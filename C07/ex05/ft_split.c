@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 11:36:13 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/10 13:51:18 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/10 14:01:17 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,18 @@ char	**ft_split(char *str, char *charset)
 	int 	i;
 	int 	j;
 	int		k;
-	char	*result[];
+	char	**result;
 
 	i = 0;
 	j = 0;
 	k = 0;
+	result = NULL;
 	while (str[i + j])
 	{
 		if (check_charset(str[i + j], charset) == 1)
 		{
 			ft_strncat(result[k], &str[i], j);
-			i++;
+			i = i + j;
 			j = 0;
 			k++;
 		}
@@ -76,10 +77,10 @@ int main(void)
 {
 	char *str = "bonjour";
 	char *charset = "o";
-	char *result[] = ft_split(str, charset);
+	char **result = ft_split(str, charset);
 
 	int i = 0;
-	while (i < 3)
+	while (i < 1)
 	{
 		printf("%s ", result[i]);
 		i++;
