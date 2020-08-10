@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/08 16:32:05 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/09 11:29:52 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/10 10:45:38 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,22 @@ char	*join(int size, char *dest, char **strs, char *sep)
 	int j;
 	int k;
 
-	i = 0;
-	j = 0;
+	i = -1;
 	k = 0;
-	while (i < size - 1)
+	while (++i < size)
 	{
-		ft_strcat(dest, strs[i]);
-		ft_strcat(dest, sep);
-		i++;
+		j = -1;
+		while (strs[i][++j])
+			dest[k++] = strs[i][j];
+		j = -1;
+		if (i < size - 1)
+		{
+			j = -1;
+			while (sep[++j])
+				dest[k++] = sep[j];
+		}
 	}
-	ft_strcat(dest, strs[i]);
+	dest[k] = '\0';
 	return (dest);
 }
 
@@ -79,13 +85,4 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 		return (dest);
 	join(size, dest, strs, sep);
 	return (dest);
-}
-
-#include <stdio.h>
-#include <unistd.h>
-int main(void)
-{
-	char *strs[] = {"bonjour", "les", "amis"};
-	char *sep = " ";
-	printf("%s", ft_strjoin(3, strs, sep));
 }
