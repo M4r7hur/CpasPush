@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 17:13:06 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/11 17:44:04 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/11 17:59:13 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		times(int x, int y);
 int		modulo(int x, int y);
 void	ft_putchar(char c);
 void	ft_putstr(char *str);
-void	ft_putnbr(char *str);
+void	ft_putnbr(int nb);
 
 int	ft_atoi(char *str)
 {
@@ -45,18 +45,21 @@ int	ft_atoi(char *str)
 	return (nb * sign);
 }
 
-void	do_op(int x1, int x2, char op, int (*f)(int x, int y))
+void	do_op(int x1, int x2, char op, int (*f[])(int x, int y))
 {
+	int tmp;
+
 	if (op == '+')
-		ft_putnbr((*f)[0](x1, x2));
+		tmp = f[0](x1, x2);
 	if (op == '-')
-		ft_putnbr((*f)[1](x1, x2));
+		tmp = f[1](x1, x2);
 	if (op == '/')
-		ft_putnbr((*f)[2](x1, x2));
+		tmp = f[2](x1, x2);
 	if (op == '*')
-		ft_putnbr((*f)[3](x1, x2));
+		tmp = f[3](x1, x2);
 	if (op == '%')
-		ft_putnbr((*f)[4](x1, x2));
+		tmp = f[4](x1, x2);
+	ft_putnbr(tmp);
 }
 
 int		main(int argc, char **argv)
@@ -70,7 +73,7 @@ int		main(int argc, char **argv)
 	operateur[4] = &modulo;
 	if (argc == 4)
 	{
-		if (argv[2] == '+' || argv[2] == '-' || argv[2] == '/' ||
+		if (argv[2] == "+" || argv[2] == '-' || argv[2] == '/' ||
 				argv[2] == '*' || argv[2] == '%')
 		{
 			if (argv[3] == 0 && argv[2] == '/')
@@ -78,7 +81,7 @@ int		main(int argc, char **argv)
 			if (argv[3] == 0 && argv[2] == '%')
 				ft_putstr("Stop : modulo by zero");
 			else
-				do_op(ft_atoi(argv[1]), ft_atoi(argv[3]), argv[2], &operateur[]);
+				do_op(ft_atoi(argv[1]), ft_atoi(argv[3]), *argv[2], &operateur[5]);
 		}
 		ft_putchar('0');
 	}
