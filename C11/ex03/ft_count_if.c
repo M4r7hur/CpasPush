@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 15:35:46 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/11 15:38:10 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/11 15:40:58 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_count_if(char **tab, int length, int (*f)(char *))
 
 	i = 0;
 	result = 0;
-	while (tab[i] != NULL)
+	while (i < length)
 	{
 		tmp = (*f)(tab[i]);
 		if (tmp != 0)
