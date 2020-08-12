@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 17:13:06 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/12 14:41:29 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/12 16:53:04 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_putstr(char *str);
 void	ft_putnbr(int nb);
 int		ft_strcmp(char *s1, char *s2);
 
-int	ft_atoi(char *str)
+int		ft_atoi(char *str)
 {
 	int i;
 	int sign;
@@ -46,32 +46,26 @@ int	ft_atoi(char *str)
 	return (nb * sign);
 }
 
-void	do_op(int x1, int x2, char op, int (*f[])(int x, int y))
+void	do_op(int x1, int x2, char op)
 {
 	int tmp;
 
+	tmp = 12;
 	if (op == '+')
-		tmp = (*f[0])(x1, x2);
-	if (op == '-')
-		tmp = (*f[1])(x1, x2);
-	if (op == '/')
-		tmp = (*f[2])(x1, x2);
-	if (op == '*')
-		tmp = (*f[3])(x1, x2);
-	if (op == '%')
-		tmp = (*f[4])(x1, x2);
+		tmp = plus(x1, x2);
+	else if (op == '-')
+		tmp = minus(x1, x2);
+	else if (op == '/')
+		tmp = divide(x1, x2);
+	else if (op == '*')
+		tmp = times(x1, x2);
+	else if (op == '%')
+		tmp = modulo(x1, x2);
 	ft_putnbr(tmp);
 }
 
 int		main(int argc, char **argv)
 {
-	int	(*operateur[5])(int x, int y);
-
-	/*operateur[0] = plus;
-	operateur[1] = minus;
-	operateur[2] = divide;
-	operateur[3] = times;
-	operateur[4] = modulo;*/
 	if (argc == 4)
 	{
 		if (ft_strcmp(argv[2], "+") == 0 || ft_strcmp(argv[2], "-") == 0 ||
@@ -80,11 +74,12 @@ int		main(int argc, char **argv)
 		{
 			if (ft_strcmp(argv[3], "0") == 0 && ft_strcmp(argv[2], "/") == 0)
 				ft_putstr("Stop : division by zero");
-			else if (ft_strcmp(argv[3], "0") == 0 && ft_strcmp(argv[2], "%") == 0)
+			else if (ft_strcmp(argv[3], "0") == 0 &&
+					ft_strcmp(argv[2], "%") == 0)
 				ft_putstr("Stop : modulo by zero");
 			else
 			{
-				do_op(ft_atoi(argv[1]), ft_atoi(argv[3]), (char)argv[2], &operateur[5]);
+				do_op(ft_atoi(argv[1]), ft_atoi(argv[3]), argv[2][0]);
 				return (0);
 			}
 		}

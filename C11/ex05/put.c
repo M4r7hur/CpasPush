@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 17:44:17 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/12 14:16:25 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/12 16:52:01 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_putnbr(int nb)
 	}
 }
 
-int	ft_strcmp(char *s1, char *s2)
+int		ft_strcmp(char *s1, char *s2)
 {
 	int i;
 
