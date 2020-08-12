@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/08 16:32:05 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/10 10:45:38 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/12 19:01:31 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,6 @@ int		ft_strlen(char *str)
 	while (str[i])
 		i++;
 	return (i);
-}
-
-char	*ft_strcat(char *dest, char *src)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (dest[i])
-		i++;
-	j = 0;
-	while (src[j])
-	{
-		dest[i] = src[j];
-		i++;
-		j++;
-	}
-	dest[i] = '\0';
-	return (dest);
 }
 
 char	*join(int size, char *dest, char **strs, char *sep)
