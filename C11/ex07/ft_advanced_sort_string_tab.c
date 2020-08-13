@@ -6,23 +6,9 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 18:55:25 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/13 19:35:10 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/13 19:50:23 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-int		ft_strcmp(char *s1, char *s2)
-{
-	int i;
-
-	i = 0;
-	while (s1[i] && s2[i])
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
-	}
-	return (s1[i] - s2[i]);
-}
 
 void	ft_advanced_sort_string_tab(char **tab, int (*cmp)(char *, char *))
 {
@@ -50,19 +36,5 @@ void	ft_advanced_sort_string_tab(char **tab, int (*cmp)(char *, char *))
 		}
 		nb_compare--;
 		count = 0;
-	}
-}
-
-#include <stdio.h>
-
-int main(void)
-{
-	int *tab[6] = {"bonjour", "les", "amis", "lol", "hello"};
-	tab[5] = NULL;
-	ft_advanced_sort_string_tab(tab, &ft_strcmp);
-	int i = 0;
-	while (i < 6)
-	{
-
 	}
 }
