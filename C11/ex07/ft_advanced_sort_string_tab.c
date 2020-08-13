@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort_string_tab.c                               :+:      :+:    :+:   */
+/*   ft_advanced_sort_string_tab.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/13 14:58:30 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/13 18:49:31 by armendes         ###   ########.fr       */
+/*   Created: 2020/08/13 18:55:25 by armendes          #+#    #+#             */
+/*   Updated: 2020/08/13 19:35:10 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
-void	ft_sort_string_tab(char **tab)
+void	ft_advanced_sort_string_tab(char **tab, int (*cmp)(char *, char *))
 {
 	int		count;
 	int		nb_compare;
@@ -40,7 +40,7 @@ void	ft_sort_string_tab(char **tab)
 	{
 		while (count < nb_compare)
 		{
-			if (ft_strcmp(tab[count], tab[count + 1]) > 0)
+			if ((*cmp)(tab[count], tab[count + 1]) > 0)
 			{
 				tmp = tab[count];
 				tab[count] = tab[count + 1];
@@ -50,5 +50,19 @@ void	ft_sort_string_tab(char **tab)
 		}
 		nb_compare--;
 		count = 0;
+	}
+}
+
+#include <stdio.h>
+
+int main(void)
+{
+	int *tab[6] = {"bonjour", "les", "amis", "lol", "hello"};
+	tab[5] = NULL;
+	ft_advanced_sort_string_tab(tab, &ft_strcmp);
+	int i = 0;
+	while (i < 6)
+	{
+
 	}
 }
