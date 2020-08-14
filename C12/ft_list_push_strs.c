@@ -6,11 +6,13 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 11:52:46 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/14 12:50:48 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/14 16:27:56 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
+
+#include <stdio.h>
 
 t_list	*ft_list_push_strs(int size, char **strs)
 {
