@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 18:02:24 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/14 16:25:36 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/14 16:34:31 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int main(void)
 	tmp = ft_list_push_strs(3, strs);
 	printf("6%s ", tmp->data);
 	printf("%s ", tmp->next->data);
-	printf("%s ", tmp->next->next->data);
-	/*printf("%s\n", tmp->next->next->next->data);*/
+	printf("%s\n", tmp->next->next->data);
+
+	
 }
