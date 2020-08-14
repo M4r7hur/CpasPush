@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 18:02:24 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/14 11:49:53 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/14 12:46:29 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_list_push_front(t_list **begin_list, void *data);
 int		ft_list_size(t_list *begin_list);
 t_list	*ft_list_last(t_list *begin_list);
 void	ft_list_push_back(t_list **begin_list, void *data);
+t_list	*ft_list_push_strs(int size, char **strs);
 
 int main(void)
 {
@@ -50,5 +51,10 @@ int main(void)
 	t_list *tmp2 = ft_list_last(list);
 	printf("%s\n", tmp2->data);
 
-
+	char *strs[3] = {"bonjour", "les", "amis"};
+	tmp = ft_list_push_strs(3, strs);
+	printf("%s ", tmp->data);
+	printf("%s ", tmp->next->data);
+	printf("%s ", tmp->next->next->data);
+	printf("%s\n", tmp->next->next->next->data);
 }
