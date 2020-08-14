@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 18:02:24 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/14 16:34:31 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/14 16:53:47 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int		ft_list_size(t_list *begin_list);
 t_list	*ft_list_last(t_list *begin_list);
 void	ft_list_push_back(t_list **begin_list, void *data);
 t_list	*ft_list_push_strs(int size, char **strs);
+void	ft_list_clear(t_list *begin_list, void (*free_fct)(void *));
+t_list	*ft_list_at(t_list *begin_list, unsigned int nbr);
 
 int main(void)
 {
@@ -57,5 +59,9 @@ int main(void)
 	printf("%s ", tmp->next->data);
 	printf("%s\n", tmp->next->next->data);
 
+	//ft_list_clear(tmp, );
 	
+	t_list	*list2;
+	list2 = ft_list_at(tmp, 3);
+	printf("7%s\n", list2->data);
 }
