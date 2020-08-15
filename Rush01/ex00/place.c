@@ -6,9 +6,11 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 11:01:59 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/15 11:06:28 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/15 11:44:27 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "lib.h"
 
 int		place(int row, int col, int val)
 {
@@ -17,14 +19,14 @@ int		place(int row, int col, int val)
 	x = 0;
 	while (x < col)
 	{
-		if (tab[row][x] == val)
+		if (g_tab[row][x] == val)
 			return (0);
 		x++;
 	}
 	x = 0;
 	while (x < row)
 	{
-		if (tab[x][col] == val)
+		if (g_tab[x][col] == val)
 			return (0);
 		x++;
 	}
@@ -118,7 +120,7 @@ int		place_col(char **columns)
 	return (1);
 }
 
-int		place_col_rev(char **colums, char **rows)
+int		place_col_rev(char **columns)
 {
 	int i;
 	int max;

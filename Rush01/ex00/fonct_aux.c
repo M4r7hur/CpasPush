@@ -6,12 +6,13 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 10:13:06 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/15 10:13:46 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/15 12:28:49 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
+#include "lib.h"
 
 void	ft_putchar(char c)
 {
@@ -30,6 +31,30 @@ void	ft_putstr(char *str)
 	}
 }
 
+void	ft_putnbr(int nb)
+{
+	if (nb == -2147483648)
+	{
+		ft_putchar('-');
+		ft_putchar('2');
+		nb = 147483648;
+	}
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nb = -nb;
+	}
+	if (nb < 10)
+	{
+		ft_putchar(nb + 48);
+	}
+	else
+	{
+		ft_putnbr(nb / 10);
+		ft_putchar(nb % 10 + 48);
+	}
+}
+
 int		verif_arg(char *str)
 {
 	int i;
@@ -43,7 +68,7 @@ int		verif_arg(char *str)
 			return (0);
 		i++;
 	}
-	if (i > 31)
+	if (i != 31)
 		return (0);
 	return (1);
 }
