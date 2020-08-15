@@ -6,12 +6,10 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 10:13:06 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/15 12:28:49 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/15 15:22:10 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
 #include "lib.h"
 
 void	ft_putchar(char c)
