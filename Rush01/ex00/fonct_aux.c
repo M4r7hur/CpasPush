@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 10:13:06 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/15 15:22:10 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/15 16:39:40 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,28 +71,27 @@ int		verif_arg(char *str)
 	return (1);
 }
 
-char	**cut(char *str, int x)
+int		**cut(char *str, int x)
 {
-	char	**result;
+	int		**result;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	if (!(result = malloc(sizeof(char *) * 2)))
+	if (!(result = malloc(sizeof(int *) * 4)))
 		return (NULL);
-	while (i < 2)
+	while (i < 4)
 	{
 		while (j < 4)
 		{
 			if (j == 0)
-				if (!(result[i] = malloc(sizeof(char) * 5)))
+				if (!(result[i] = malloc(sizeof(int) * 4)))
 					return (NULL);
-			result[i][j] = str[x];
+			result[i][j] = str[x] - 48;
 			x += 2;
 			j++;
 		}
-		result[i][j] = '\0';
 		j = 0;
 		i++;
 	}

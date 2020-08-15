@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 11:01:59 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/15 15:22:24 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/15 15:55:59 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		place(int row, int col, int val)
 	return (1);
 }
 
-int		place_row(int *rowL, int row)
+int		place_row(int *row_l, int row)
 {
 	int i;
 	int max;
@@ -53,12 +53,12 @@ int		place_row(int *rowL, int row)
 			max = g_tab[row][i + 1];
 		i++;
 	}
-	if (result != rowL[row])
+	if (result != row_l[row])
 		return (0);
 	return (1);
 }
 
-int		place_row_rev(int *rowR, int row)
+int		place_row_rev(int *row_r, int row)
 {
 	int i;
 	int max;
@@ -78,25 +78,25 @@ int		place_row_rev(int *rowR, int row)
 			max = g_tab[row][i];
 		i--;
 	}
-	if (result != rowR[row])
+	if (result != row_r[row])
 		return (0);
 	return (1);
 }
 
-int		place_col(int *columnU)
+int		place_col(int *column_u)
 {
 	int i;
 	int max;
 	int result;
 	int col;
 
-	col = 0;
-	while (col < 4)
+	col = -1;
+	while (++col < 4)
 	{
-		i = 0;
+		i = -1;
 		result = 1;
-		max = g_tab[i][col];
-		while (i < 3)
+		max = g_tab[i + 1][col];
+		while (++i < 3)
 		{
 			if (g_tab[i][col] < g_tab[i + 1][col] && g_tab[i + 1][col] > max)
 			{
@@ -105,29 +105,27 @@ int		place_col(int *columnU)
 			}
 			if (g_tab[i + 1][col] > max)
 				max = g_tab[i + 1][col];
-			i++;
 		}
-		if (result != columnU[col])
+		if (result != column_u[col])
 			return (0);
-		col++;
 	}
 	return (1);
 }
 
-int		place_col_rev(int *columnD)
+int		place_col_rev(int *column_d)
 {
 	int i;
 	int max;
 	int result;
 	int col;
 
-	col = 0;
-	while (col < 4)
+	col = -1;
+	while (++col < 4)
 	{
-		i = 3;
+		i = 4;
 		result = 1;
-		max = g_tab[i][col];
-		while (i > 0)
+		max = g_tab[i - 1][col];
+		while (--i > 0)
 		{
 			if (g_tab[i][col] < g_tab[i - 1][col] && g_tab[i - 1][col] > max)
 			{
@@ -136,12 +134,9 @@ int		place_col_rev(int *columnD)
 			}
 			if (g_tab[i - 1][col] > max)
 				max = g_tab[i - 1][col];
-			i--;
 		}
-		if (result != columnD[col])
+		if (result != column_d[col])
 			return (0);
-		col++;
 	}
 	return (1);
-
 }
