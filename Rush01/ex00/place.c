@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 11:01:59 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/15 15:55:59 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/15 17:42:37 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ int		place_row(int *row_l, int row)
 			max = g_tab[row][i + 1];
 			result++;
 		}
-		if (g_tab[row][i + 1] > max)
-			max = g_tab[row][i + 1];
 		i++;
 	}
 	if (result != row_l[row])
@@ -74,8 +72,6 @@ int		place_row_rev(int *row_r, int row)
 			max = g_tab[row][i - 1];
 			result++;
 		}
-		if (g_tab[row][i] > max)
-			max = g_tab[row][i];
 		i--;
 	}
 	if (result != row_r[row])
@@ -90,24 +86,24 @@ int		place_col(int *column_u)
 	int result;
 	int col;
 
-	col = -1;
-	while (++col < 4)
+	col = 0;
+	while (col < 4)
 	{
-		i = -1;
+		i = 0;
 		result = 1;
-		max = g_tab[i + 1][col];
-		while (++i < 3)
+		max = g_tab[i][col];
+		while (i < 3)
 		{
 			if (g_tab[i][col] < g_tab[i + 1][col] && g_tab[i + 1][col] > max)
 			{
 				max = g_tab[i + 1][col];
 				result++;
 			}
-			if (g_tab[i + 1][col] > max)
-				max = g_tab[i + 1][col];
+			i++;
 		}
 		if (result != column_u[col])
 			return (0);
+		col++;
 	}
 	return (1);
 }
@@ -119,24 +115,24 @@ int		place_col_rev(int *column_d)
 	int result;
 	int col;
 
-	col = -1;
-	while (++col < 4)
+	col = 0;
+	while (col < 4)
 	{
-		i = 4;
+		i = 3;
 		result = 1;
-		max = g_tab[i - 1][col];
-		while (--i > 0)
+		max = g_tab[i][col];
+		while (i > 0)
 		{
 			if (g_tab[i][col] < g_tab[i - 1][col] && g_tab[i - 1][col] > max)
 			{
 				max = g_tab[i - 1][col];
 				result++;
 			}
-			if (g_tab[i - 1][col] > max)
-				max = g_tab[i - 1][col];
+			i--;
 		}
 		if (result != column_d[col])
 			return (0);
+		col++;
 	}
 	return (1);
 }

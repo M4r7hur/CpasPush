@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 09:48:11 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/15 16:46:59 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/15 17:42:33 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	g_stop = 0;
 
-void	disp()
+void	disp(void)
 {
 	int i;
 	int j;
@@ -40,28 +40,28 @@ void	solve(int **tab, int row, int col)
 {
 	int val;
 
-	val = 1;
-	while (val <= 4)
+	val = 0;
+	while (++val <= 4)
 	{
-	    if (g_stop == 1)
-	        return ;
-    		if (place(row, col, val))
-    		{
-    			g_tab[row][col] = val;
-    			if (col == 3 && place_row(tab[2], row) && place_row_rev(tab[3], row))
-    			{
-    				if (row == 3 && place_col(tab[0]) && place_col_rev(tab[1]))
-    				{
-    					disp();
-    					g_stop = 1;
-    					return ;
-    				}
-    				solve(tab, row + 1, 0);
-    			}
-    			else
-    				solve(tab, row, col + 1);
-    		}
-		val++;
+		if (g_stop == 1)
+			return ;
+		if (place(row, col, val))
+		{
+			g_tab[row][col] = val;
+			if (col == 3 && place_row(tab[2], row) &&
+					place_row_rev(tab[3], row))
+			{
+				if (row == 3 && place_col(tab[0]) && place_col_rev(tab[1]))
+				{
+					disp();
+					g_stop = 1;
+					return ;
+				}
+				solve(tab, row + 1, 0);
+			}
+			else
+				solve(tab, row, col + 1);
+		}
 	}
 }
 
@@ -77,8 +77,8 @@ int		main(int ac, char **av)
 			solve(tab, 0, 0);
 		}
 		else
-			ft_putstr("L'argument n'est pas valide.\n");
+			ft_putstr("Error\n");
 	}
 	else
-		ft_putstr("Le nombre d'arguments est incorrect.\n");
+		ft_putstr("Error\n");
 }
