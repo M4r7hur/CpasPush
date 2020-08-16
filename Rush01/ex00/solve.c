@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 09:48:11 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/15 17:42:33 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/15 18:50:29 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	disp(void)
 	}
 }
 
-void	solve(int **tab, int row, int col)
+int		solve(int **tab, int row, int col)
 {
 	int val;
 
@@ -44,18 +44,17 @@ void	solve(int **tab, int row, int col)
 	while (++val <= 4)
 	{
 		if (g_stop == 1)
-			return ;
+			return (1);
 		if (place(row, col, val))
 		{
 			g_tab[row][col] = val;
-			if (col == 3 && place_row(tab[2], row) &&
-					place_row_rev(tab[3], row))
+			if (col == 3 && place_row(tab[2], row) && place_row_r(tab[3], row))
 			{
-				if (row == 3 && place_col(tab[0]) && place_col_rev(tab[1]))
+				if (row == 3 && place_col(tab[0]) && place_col_r(tab[1]))
 				{
 					disp();
 					g_stop = 1;
-					return ;
+					return (1);
 				}
 				solve(tab, row + 1, 0);
 			}
@@ -63,6 +62,7 @@ void	solve(int **tab, int row, int col)
 				solve(tab, row, col + 1);
 		}
 	}
+	return (0);
 }
 
 int		main(int ac, char **av)
@@ -74,7 +74,8 @@ int		main(int ac, char **av)
 		if (verif_arg(av[1]))
 		{
 			tab = cut(av[1], 0);
-			solve(tab, 0, 0);
+			if (!solve(tab, 0, 0))
+				ft_putstr("Error\n");
 		}
 		else
 			ft_putstr("Error\n");

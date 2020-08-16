@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 11:01:59 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/15 17:42:37 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/16 10:27:10 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		place_row(int *row_l, int row)
 	return (1);
 }
 
-int		place_row_rev(int *row_r, int row)
+int		place_row_r(int *row_r, int row)
 {
 	int i;
 	int max;
@@ -108,7 +108,7 @@ int		place_col(int *column_u)
 	return (1);
 }
 
-int		place_col_rev(int *column_d)
+int		place_col_r(int *column_d)
 {
 	int i;
 	int max;
