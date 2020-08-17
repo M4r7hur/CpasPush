@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_at.c                                       :+:      :+:    :+:   */
+/*   ft_list_reverse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/14 16:38:16 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/17 12:41:32 by armendes         ###   ########.fr       */
+/*   Created: 2020/08/17 11:25:20 by armendes          #+#    #+#             */
+/*   Updated: 2020/08/17 12:41:05 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
-#include <stdio.h>
+#include <stdlib.h>
 
-t_list	*ft_list_at(t_list *begin_list, unsigned int nbr)
+void	ft_list_reverse(t_list **begin_list)
 {
-	t_list			*tmp;
-	unsigned int	i;
+	t_list	*elem;
+	t_list	*tmp;
+	t_list	*tmp2;
 
-	i = 0;
-	tmp = begin_list;
-	while (i < nbr)
+	if (*begin_list)
 	{
-		if (!tmp->next)
-			return (NULL);
-		tmp = tmp->next;
-		i++;
+		elem = *begin_list;
+		tmp = elem->next;
+		tmp2 = tmp->next;
+		elem->next = NULL;
+		while (tmp2)
+		{
+			tmp->next = elem;
+			elem = tmp;
+			tmp = tmp2;
+			tmp2 = tmp2->next;
+		}
+		tmp->next = elem;
+		*begin_list = tmp;
 	}
-	return (tmp);
 }

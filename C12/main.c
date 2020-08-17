@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 18:02:24 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/17 11:23:46 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/17 12:15:34 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_list_push_back(t_list **begin_list, void *data);
 t_list	*ft_list_push_strs(int size, char **strs);
 void	ft_list_clear(t_list *begin_list, void (*free_fct)(void *));
 t_list	*ft_list_at(t_list *begin_list, unsigned int nbr);
+void	ft_list_reverse(t_list **begin_list);
 
 int main(void)
 {
@@ -53,15 +54,23 @@ int main(void)
 	t_list *tmp2 = ft_list_last(list);
 	printf("%s\n", tmp2->data);
 
-	char *strs[3] = {"bonjour", "les", "amis"};
-	tmp = ft_list_push_strs(3, strs);
+	char *strs[4] = {"bonjour", "les", "amis", "hello"};
+	tmp = ft_list_push_strs(4, strs);
 	printf("6%s ", tmp->data);
 	printf("%s ", tmp->next->data);
-	printf("%s\n", tmp->next->next->data);
+	printf("%s ", tmp->next->next->data);
+	printf("%s\n", tmp->next->next->next->data);
 
 	//ft_list_clear(tmp, );
 	
 	t_list	*list2;
 	list2 = ft_list_at(tmp, 1);
 	printf("7%s\n", list2->data);
+
+	ft_list_reverse(&tmp);
+	printf("8%s ", tmp->data);
+	printf("%s ", tmp->next->data);
+	printf("%s ", tmp->next->next->data);
+	printf("%s\n", tmp->next->next->next->data);
+
 }
