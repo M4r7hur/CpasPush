@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 18:02:24 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/17 12:15:34 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/17 14:02:04 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,22 @@ t_list	*ft_list_push_strs(int size, char **strs);
 void	ft_list_clear(t_list *begin_list, void (*free_fct)(void *));
 t_list	*ft_list_at(t_list *begin_list, unsigned int nbr);
 void	ft_list_reverse(t_list **begin_list);
+void	ft_list_foreach(t_list *begin_list, void (*f)(void *));
+
+void	add_one(void *data)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	str = (char *)data;
+	while (str[i])
+		i++;
+
+	str[i] = 'a';
+	str[i + 1] = '\0';
+	data = (void *)str;
+}
 
 int main(void)
 {
@@ -73,4 +89,9 @@ int main(void)
 	printf("%s ", tmp->next->next->data);
 	printf("%s\n", tmp->next->next->next->data);
 
+	ft_list_foreach(tmp, &add_one);
+	printf("9%s ", tmp->data);
+	printf("%s ", tmp->next->data);
+	printf("%s ", tmp->next->next->data);
+	printf("%s\n", tmp->next->next->next->data);
 }
