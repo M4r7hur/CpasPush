@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 18:02:24 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/14 16:53:47 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/17 11:23:46 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ int main(void)
 	//ft_list_clear(tmp, );
 	
 	t_list	*list2;
-	list2 = ft_list_at(tmp, 3);
+	list2 = ft_list_at(tmp, 1);
 	printf("7%s\n", list2->data);
 }
