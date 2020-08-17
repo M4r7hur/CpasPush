@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 12:42:41 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/17 14:07:20 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/17 17:33:17 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_list_foreach(t_list *begin_list, void (*f)(void *))
 {
-	t_list	*tmp;
+	t_list	*;
 
 	tmp = begin_list;
 	while (tmp->next)
