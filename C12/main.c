@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 18:02:24 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/18 13:49:06 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/18 13:54:21 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_list	*ft_list_at(t_list *begin_list, unsigned int nbr);
 void	ft_list_reverse(t_list **begin_list);
 void	ft_list_foreach(t_list *begin_list, void (*f)(void *));
 void	ft_list_foreach_if(t_list *begin_list, void (*f)(void *), void *data_ref, int (*cmp)());
+t_list	*ft_list_find(t_list *begin_list, void *data_ref, int (*cmp)());
 
 void	free(void *data)
 {
@@ -139,4 +140,11 @@ int main(void)
 	ft_list_foreach_if(tmp, &print, data_ref, &ft_strcmp);
 	printf("\n");
 	printf("\n");
+
+	printf("List find\n");
+	printf("-----------------------------\n");
+	t_list	*res = ft_list_find(tmp, data_ref, &ft_strcmp);
+	printf("%s\n", res->data);
+	printf("\n");
+
 }
