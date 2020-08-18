@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 18:02:24 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/18 18:06:10 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/18 18:43:45 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_list_foreach_if(t_list *begin_list, void (*f)(void *), void *data_ref, i
 t_list	*ft_list_find(t_list *begin_list, void *data_ref, int (*cmp)());
 void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *));
 void	ft_list_merge(t_list **begin_list1, t_list *begin_list2);
+void	ft_list_sort(t_list **begin_list, int (*cmp)());
 
 void	free(void *data)
 {
@@ -164,6 +165,15 @@ int main(void)
 	t_list *lists1 = ft_list_push_strs(2, strs1);
 	t_list *lists2 = ft_list_push_strs(2, strs2);
 	ft_list_merge(&lists1, lists2);
+	printf("%s ", lists1->data);
+	printf("%s ", lists1->next->data);
+	printf("%s ", lists1->next->next->data);
+	printf("%s ", lists1->next->next->next->data);
+	printf("\n");
+
+	printf("Sort\n");
+	printf("-----------------------------\n");
+	ft_list_sort(&lists1, &ft_strcmp);
 	printf("%s ", lists1->data);
 	printf("%s ", lists1->next->data);
 	printf("%s ", lists1->next->next->data);
