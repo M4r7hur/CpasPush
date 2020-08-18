@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 16:30:03 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/17 11:22:41 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/18 13:23:07 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,6 @@ void	ft_list_clear(t_list *begin_list, void (*free_fct)(void *))
 		free(tmp);
 		tmp = tmp2;
 	}
+	(*free_fct)(tmp->data);
+	free(tmp);
 }
