@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 18:02:24 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/18 18:43:45 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/18 19:34:31 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_list	*ft_list_find(t_list *begin_list, void *data_ref, int (*cmp)());
 void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *));
 void	ft_list_merge(t_list **begin_list1, t_list *begin_list2);
 void	ft_list_sort(t_list **begin_list, int (*cmp)());
+void	ft_list_reverse_fun(t_list *begin_list);
 
 void	free(void *data)
 {
@@ -170,6 +171,7 @@ int main(void)
 	printf("%s ", lists1->next->next->data);
 	printf("%s ", lists1->next->next->next->data);
 	printf("\n");
+	printf("\n");
 
 	printf("Sort\n");
 	printf("-----------------------------\n");
@@ -179,4 +181,16 @@ int main(void)
 	printf("%s ", lists1->next->next->data);
 	printf("%s ", lists1->next->next->next->data);
 	printf("\n");
+	printf("\n");
+
+	printf("List reverse fun\n");
+	printf("-----------------------------\n");
+	ft_list_reverse(&lists1);
+	printf("%s ", lists1->data);
+	printf("%s ", lists1->next->data);
+	printf("%s ", lists1->next->next->data);
+	printf("%s\n", lists1->next->next->next->data);
+	printf("\n");
+	printf("\n");
+
 }
