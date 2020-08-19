@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 18:02:24 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/19 09:51:49 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/19 15:04:58 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (
 void	ft_list_merge(t_list **begin_list1, t_list *begin_list2);
 void	ft_list_sort(t_list **begin_list, int (*cmp)());
 void	ft_list_reverse_fun(t_list *begin_list);
+void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)());
 
 void	free(void *data)
 {
@@ -193,4 +194,16 @@ int main(void)
 	printf("\n");
 	printf("\n");
 
+	printf("Sorted list insert\n");
+	printf("-----------------------------\n");
+	ft_list_sort(&lists1, &ft_strcmp);
+	char *strtmp = "copains";
+	ft_sorted_list_insert(&lists1, strtmp, &ft_strcmp);
+	printf("%s ", lists1->data);
+	printf("%s ", lists1->next->data);
+	printf("%s ", lists1->next->next->data);
+	printf("%s\n", lists1->next->next->next->data);
+	//printf("%s\n", lists1->next->next->next->next->data);
+	printf("\n");
+	printf("\n");
 }
