@@ -6,33 +6,67 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 14:51:15 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/19 15:05:16 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/19 15:31:40 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
+void	list_push_front(t_list **begin_list, void *data)
 {
-	t_list	*tmp;
 	t_list	*elem;
 
-	tmp = *begin_list;
-	elem = ft_create_elem(data);
-	if (!(*begin_list))
+	if (!*begin_list)
 	{
-		*begin_list = elem;
+		*begin_list = ft_create_elem(data);
 		return ;
 	}
-	while (tmp->next)
+	else
 	{
-		if ((*cmp)(tmp->data, elem->data) > 0)
-		{
-			elem->next = tmp->next;
-			tmp->next = elem->next;
-			return ;
-		}
-		tmp = tmp->next;
+		elem = ft_create_elem(data);
+		elem->next = *begin_list;
+		*begin_list = elem;
 	}
-	tmp->next = elem;
+}
+
+void	swap_data_(t_list *tmp1, t_list *tmp2)
+{
+	void	*tmp;
+
+	tmp = tmp1->data;
+	tmp1->data = tmp2->data;
+	tmp2->data = tmp;
+}
+
+void	list_sort(t_list **begin_list, int (*cmp)())
+{
+	t_list	*tmp1;
+	t_list	*tmp2;
+	int		loop;
+
+	if (!(*begin_list) || !((*begin_list)->next))
+		return ;
+	loop = 1;
+	while (loop)
+	{
+		loop = 0;
+		tmp1 = *begin_list;
+		tmp2 = tmp1->next;
+		while (tmp2)
+		{
+			if ((*cmp)(tmp1->data, tmp2->data) > 0)
+			{
+				loop = 1;
+				swap_data_(tmp1, tmp2);
+			}
+			tmp1 = tmp1->next;
+			tmp2 = tmp2->next;
+		}
+	}
+}
+
+void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
+{
+	list_push_front(begin_list, data);
+	list_sort(begin_list, cmp);
 }

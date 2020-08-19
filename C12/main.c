@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 18:02:24 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/19 15:04:58 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/19 15:31:26 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,8 +202,8 @@ int main(void)
 	printf("%s ", lists1->data);
 	printf("%s ", lists1->next->data);
 	printf("%s ", lists1->next->next->data);
-	printf("%s\n", lists1->next->next->next->data);
-	//printf("%s\n", lists1->next->next->next->next->data);
+	printf("%s ", lists1->next->next->next->data);
+	printf("%s\n", lists1->next->next->next->next->data);
 	printf("\n");
 	printf("\n");
 }
