@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 18:02:24 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/19 15:31:26 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/19 15:43:10 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ft_list_merge(t_list **begin_list1, t_list *begin_list2);
 void	ft_list_sort(t_list **begin_list, int (*cmp)());
 void	ft_list_reverse_fun(t_list *begin_list);
 void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)());
+void	ft_sorted_list_merge(t_list **begin_list1, t_list *begin_list2, int (*cmp)());
 
 void	free(void *data)
 {
@@ -206,4 +207,20 @@ int main(void)
 	printf("%s\n", lists1->next->next->next->next->data);
 	printf("\n");
 	printf("\n");
+
+	printf("Sorted list merge\n");
+	printf("-----------------------------\n");
+	ft_list_sort(&lists1, &ft_strcmp);
+	char *strs4[4] = {"les2", "hello2", "bonjour2", "amis2"};
+	t_list	*lists3 = ft_list_push_strs(4, strs4);
+	ft_sorted_list_merge(&lists1, lists3, &ft_strcmp);
+	printf("%s ", lists1->data);
+	printf("%s ", lists1->next->data);
+	printf("%s ", lists1->next->next->data);
+	printf("%s ", lists1->next->next->next->data);
+	printf("%s ", lists1->next->next->next->next->data);
+	printf("%s ", lists1->next->next->next->next->next->data);
+	printf("%s ", lists1->next->next->next->next->next->next->data);
+	printf("%s ", lists1->next->next->next->next->next->next->next->data);
+	printf("%s\n", lists1->next->next->next->next->next->next->next->next->data);
 }
