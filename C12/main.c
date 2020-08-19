@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 18:02:24 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/18 19:34:31 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/19 09:51:49 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ int main(void)
 
 	printf("List reverse fun\n");
 	printf("-----------------------------\n");
-	ft_list_reverse(&lists1);
+	ft_list_reverse_fun(lists1);
 	printf("%s ", lists1->data);
 	printf("%s ", lists1->next->data);
 	printf("%s ", lists1->next->next->data);
