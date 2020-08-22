@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/22 10:48:37 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/22 10:51:08 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/22 11:11:57 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ typedef struct	s_list
 {
 	int	num;
 	int nb_div;
+	int grp;
 }				t_list;
+
+int		str_is_numeric(char *str);
 
 #endif
