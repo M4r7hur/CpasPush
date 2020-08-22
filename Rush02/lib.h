@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lib.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/19 18:19:22 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/21 15:17:23 by armendes         ###   ########.fr       */
+/*   Created: 2020/08/22 10:48:37 by armendes          #+#    #+#             */
+/*   Updated: 2020/08/22 10:51:08 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_btree.h"
-#include <stdio.h>
+#ifndef	LIB_H
+# define LIB_H
 
-t_btree	*b_tree_create_node(void *item);
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
-int		main(void)
+typedef struct	s_list
 {
+	int	num;
+	int nb_div;
+}				t_list;
 
-	printf("Create node\n");
-	printf("--------------------------\n");
-	char *str = "bonjour";
-	t_btree *tmp = b_tree_create_node(str);
-	printf("%s\n", tmp->item);
-	printf("\n");
-	printf("\n");
-
-
-}
+#endif
