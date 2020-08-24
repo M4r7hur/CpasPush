@@ -1,40 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/24 09:46:07 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/24 12:05:50 by armendes         ###   ########.fr       */
+/*   Created: 2020/08/24 11:53:49 by armendes          #+#    #+#             */
+/*   Updated: 2020/08/24 11:57:38 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "../includes/libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-
-typedef struct	s_list;
+int		main(int ac, char **av)
 {
-	int				x;
-	int				y;
-	struct s_list	*next;
-	struct s_list	*next_line;
-}				t_list;
-
-typedef struct	s_param
-{
-	int				max;
-	char			plein;
-	char			vide;
-	char			obstacle;
-	char			*name;
-	struct s_list	*next;
-}				t_param;
-
-#endif
+	if (ac > 1)
+	{
+		parse()
+	}
+}

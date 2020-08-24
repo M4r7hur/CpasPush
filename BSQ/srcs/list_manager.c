@@ -6,7 +6,7 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 10:19:27 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/24 10:49:18 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/24 12:00:44 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,9 @@ void	add_elem(t_list *elem1, t_list *elem2)
 
 void	add_next_line(t_list *elem1, t_list *elem2)
 {
-	elem1->next_line = elem2->next;
+	while (elem1->next != elem2)
+	{
+		elem1->next_line = elem2;
+		elem1 = elem1->next;
+	}
 }
