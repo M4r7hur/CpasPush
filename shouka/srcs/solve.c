@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 10:01:04 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/24 13:44:21 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/24 19:38:34 by seciurte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,15 @@ void	disp(int x, int y, t_param *e, int len)
 	int		i;
 	int		j;
 	int		fd;
-	int		bytes_read;
 	char	buff[1];
 
 	i = 0;
 	j = 0;
 	if ((fd = open(e->name, O_RDONLY)) == -1)
 		return ;
-	while ((bytes_read = read(fd, buff, 1)))
+	while (read(fd, buff, 1) && buff[0] != '\n');
+	i++;
+	while (read(fd, buff, 1))
 	{
 		if (buff[0] == e->obstacle)
 			ft_putchar(e->obstacle);
@@ -53,6 +54,8 @@ void	disp(int x, int y, t_param *e, int len)
 			i++;
 		}
 	}
+	if (close(fd) == -1)
+		return ;
 }
 
 int		check_obst(int x, int y, t_list *begin_list, int len)

@@ -6,7 +6,7 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 10:58:07 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/24 18:32:17 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/24 19:22:04 by seciurte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ t_param		*get_map_info(int fd, char *name)
 		write(2, "map error\n", 10);
 		return (NULL);
 	}
+	if (close(fd) == -1)
+		return (NULL);
 	return (params);
 }
 
