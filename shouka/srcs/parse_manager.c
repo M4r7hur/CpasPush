@@ -6,19 +6,19 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 10:58:07 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/25 15:10:18 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/25 15:52:32 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long		stock(char c, t_param *params, long *count, long i, long j)
+long		stock(char c, t_param *params, long i, long j)
 {
 	t_list *elem;
 	t_list *elem2;
 
 	if (c == params->vide)
-		(*count)++;
+		params->count++;
 	else if (c == params->obstacle)
 	{
 		if (params->next == NULL)
@@ -37,22 +37,20 @@ long		stock(char c, t_param *params, long *count, long i, long j)
 	return (0);
 }
 
-long			check_nb_col(long fd, long max, t_param *params)
+long		check_nb_col(long fd, long max, t_param *params)
 {
-	long		i;
-	long		j;
-	long		len;
+	long	i;
+	long	j;
+	long	len;
 	char	c;
-	long		count;
 
-	count = 0;
 	i = -1;
 	while (++i < max)
 	{
 		j = 0;
 		while (read(fd, &c, 1) && c != '\n')
 		{
-			if (stock(c, params, &count, i, j))
+			if (stock(c, params, i, j))
 				return (1);
 			j++;
 		}
@@ -61,7 +59,7 @@ long			check_nb_col(long fd, long max, t_param *params)
 		else if (j != len)
 			return (1);
 	}
-	if (count == 0)
+	if (params->count == 0)
 		return (1);
 	params->ymax = len;
 	return (0);
@@ -71,7 +69,7 @@ t_param		*get_map_info(long fd, char *name)
 {
 	char		c;
 	char		info[500];
-	long			i;
+	long		i;
 	t_param		*params;
 
 	i = 0;
@@ -105,6 +103,7 @@ t_param		*split_info(char *str, char *name)
 	str[ft_strlen(str) - 3] = '\0';
 	info->xmax = ft_atoi(str);
 	info->ymax = 0;
+	info->count = 0;
 	info->next = NULL;
 	return (info);
 }

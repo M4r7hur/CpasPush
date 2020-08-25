@@ -6,7 +6,7 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 10:19:27 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/25 15:09:50 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/25 15:24:28 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ t_list	*list_last(t_list *begin_list)
 void	put_next_line(t_list *begin_list)
 {
 	t_list	*tmp;
-	long		count;
-	long		x;
+	long	count;
+	long	x;
 
 	count = 0;
 	tmp = begin_list;

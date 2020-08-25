@@ -6,18 +6,16 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 11:53:49 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/25 15:11:35 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/25 18:50:36 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-#include <stdio.h>
-
-int		main(int	ac, char **av)
+int		main(int ac, char **av)
 {
-	long			i;
-	long			fd;
+	long		i;
+	long		fd;
 	t_param		*params;
 
 	i = 1;
@@ -29,10 +27,20 @@ int		main(int	ac, char **av)
 				return (0);
 			if ((params = get_map_info(fd, av[i])) != NULL)
 			{
-				put_next_line(params->next);
-				solve(params->xmax, params->ymax, params, params->xmax);
+				//put_next_line(params->next);
+				solve2(0, 0, params, 1);
 			}
+			ft_putchar('\n');
 			i++;
+		}
+	}
+	else
+	{
+		fd = 0;
+		if ((params = get_map_info(fd, av[i])) != NULL)
+		{
+			put_next_line(params->next);
+			solve2(0, 0, params, 1);
 		}
 	}
 }

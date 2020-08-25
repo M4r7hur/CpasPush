@@ -6,20 +6,20 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 10:01:04 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/25 15:09:29 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/25 18:50:31 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long		ver_x(long i, long x, long len)
+long	ver_x(long i, long x, long len)
 {
 	if (i >= x && i <= x + len - 1)
 		return (1);
 	return (0);
 }
 
-long		ver_y(long j, long y, long len)
+long	ver_y(long j, long y, long len)
 {
 	if (j >= y && j <= y + len - 1)
 		return (1);
@@ -28,17 +28,16 @@ long		ver_y(long j, long y, long len)
 
 void	disp(long x, long y, t_param *e, long len)
 {
-	long		i;
-	long		j;
-	long		fd;
+	long	i;
+	long	j;
+	long	fd;
 	char	c;
 
-	i = -1;
 	j = 0;
 	if ((fd = open(e->name, O_RDONLY)) == -1)
 		return ;
-	while (read(fd, &c, 1) && c != '\n');
-	i++;
+	while (read(fd, &c, 1) && c != '\n')
+		i = 0;
 	while (read(fd, &c, 1))
 	{
 		if (c == e->obstacle)
@@ -58,12 +57,12 @@ void	disp(long x, long y, t_param *e, long len)
 		return ;
 }
 
-long		check_obst(long x, long y, t_list *begin_list, long len)
+long	check_obst(long x, long y, t_list *begin_list, long len)
 {
-	long xmax;
-	long ymax;
+	long	xmax;
+	long	ymax;
 	long	xtmp;
-	long ytmp;
+	long	ytmp;
 
 	xmax = x + len - 1;
 	ymax = y + len - 1;
@@ -81,27 +80,50 @@ long		check_obst(long x, long y, t_list *begin_list, long len)
 	return (1);
 }
 
-void	solve(long xbord, long ybord, t_param *params, long len)
+void	fonction_transit(long *y, long *ymax)
 {
-	long x;
-	long y;
+	*y += 1;
+	*ymax += 1;
+}
+
+void	set_x_y_tmp(long *x, long *y, long *xtmp, long *ytmp)
+{
+	*xtmp = *x;
+	*ytmp = *y;
+}
+
+void	set_len(long *len, long *maxlen, long *lentmp)
+{
+	*lentmp = *len;
+	*maxlen = *len;
+}
+
+void	solve2(long x, long y, t_param *params, long len)
+{
+	long xtmp;
+	long ytmp;
+	long lentmp;
 	long xmax;
 	long ymax;
+	static long maxlen;
 
-	if (len <= 0)
+	xtmp = 0;
+	ytmp = 0;
+	lentmp = 0;
+	if (len > params->xmax)
 		return ;
-	x = 0;
-	y = 0;
 	xmax = x + len - 1;
 	ymax = y + len - 1;
-	while (xmax < xbord && ymax < ybord)
+	while (xmax < params->xmax && ymax < params->ymax)
 	{
 		if (check_obst(x, y, params->next, len))
 		{
-			disp(x, y, params, len);
-			return ;
+			set_x_y_tmp(&x, &y, &xtmp, &ytmp);
+			set_len(&len, &maxlen, &lentmp);
+			solve2(0, 0, params, len + 1);
+			break ;
 		}
-		if (ymax == ybord - 1)
+		if (ymax == params->ymax - 1)
 		{
 			x++;
 			y = 0;
@@ -109,10 +131,8 @@ void	solve(long xbord, long ybord, t_param *params, long len)
 			ymax = y + len - 1;
 		}
 		else
-		{
-			y++;
-			ymax++;
-		}
+			fonction_transit(&y, &ymax);
 	}
-	solve(xbord, ybord, params, len - 1);
+	if (lentmp == maxlen)
+		disp(x, y, params, len);
 }
