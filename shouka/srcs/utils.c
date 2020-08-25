@@ -6,7 +6,7 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:20:23 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/24 17:03:35 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/25 15:10:31 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-int		ft_strlen(char *str)
+long		ft_strlen(char *str)
 {
-	int i;
+	long i;
 
 	i = 0;
 	while (str[i])
@@ -27,11 +27,11 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
-int		ft_atoi(char *str)
+long		ft_atoi(char *str)
 {
-	int i;
-	int nbr;
-	int fsign;
+	long i;
+	long nbr;
+	long fsign;
 
 	i = 0;
 	nbr = 0;

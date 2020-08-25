@@ -6,31 +6,31 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 10:01:04 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/25 15:04:52 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/25 15:09:29 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ver_x(int i, int x, int len)
+long		ver_x(long i, long x, long len)
 {
 	if (i >= x && i <= x + len - 1)
 		return (1);
 	return (0);
 }
 
-int		ver_y(int j, int y, int len)
+long		ver_y(long j, long y, long len)
 {
 	if (j >= y && j <= y + len - 1)
 		return (1);
 	return (0);
 }
 
-void	disp(int x, int y, t_param *e, int len)
+void	disp(long x, long y, t_param *e, long len)
 {
-	int		i;
-	int		j;
-	int		fd;
+	long		i;
+	long		j;
+	long		fd;
 	char	c;
 
 	i = -1;
@@ -58,12 +58,12 @@ void	disp(int x, int y, t_param *e, int len)
 		return ;
 }
 
-int		check_obst(int x, int y, t_list *begin_list, int len)
+long		check_obst(long x, long y, t_list *begin_list, long len)
 {
-	int xmax;
-	int ymax;
-	int	xtmp;
-	int ytmp;
+	long xmax;
+	long ymax;
+	long	xtmp;
+	long ytmp;
 
 	xmax = x + len - 1;
 	ymax = y + len - 1;
@@ -81,12 +81,12 @@ int		check_obst(int x, int y, t_list *begin_list, int len)
 	return (1);
 }
 
-void	solve(int xbord, int ybord, t_param *params, int len)
+void	solve(long xbord, long ybord, t_param *params, long len)
 {
-	int x;
-	int y;
-	int xmax;
-	int ymax;
+	long x;
+	long y;
+	long xmax;
+	long ymax;
 
 	if (len <= 0)
 		return ;

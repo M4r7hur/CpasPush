@@ -6,13 +6,13 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 10:58:07 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/25 11:10:44 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/25 15:10:18 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		stock(char c, t_param *params, int *count, int i, int j)
+long		stock(char c, t_param *params, long *count, long i, long j)
 {
 	t_list *elem;
 	t_list *elem2;
@@ -37,13 +37,13 @@ int		stock(char c, t_param *params, int *count, int i, int j)
 	return (0);
 }
 
-int			check_nb_col(int fd, int max, t_param *params)
+long			check_nb_col(long fd, long max, t_param *params)
 {
-	int		i;
-	int		j;
-	int		len;
+	long		i;
+	long		j;
+	long		len;
 	char	c;
-	int		count;
+	long		count;
 
 	count = 0;
 	i = -1;
@@ -67,11 +67,11 @@ int			check_nb_col(int fd, int max, t_param *params)
 	return (0);
 }
 
-t_param		*get_map_info(int fd, char *name)
+t_param		*get_map_info(long fd, char *name)
 {
 	char		c;
 	char		info[500];
-	int			i;
+	long			i;
 	t_param		*params;
 
 	i = 0;

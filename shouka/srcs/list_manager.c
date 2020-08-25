@@ -6,13 +6,13 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 10:19:27 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/25 11:10:35 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/25 15:09:50 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*create_elem(int x, int y)
+t_list	*create_elem(long x, long y)
 {
 	t_list	*elem;
 
@@ -54,8 +54,8 @@ t_list	*list_last(t_list *begin_list)
 void	put_next_line(t_list *begin_list)
 {
 	t_list	*tmp;
-	int		count;
-	int		x;
+	long		count;
+	long		x;
 
 	count = 0;
 	tmp = begin_list;
