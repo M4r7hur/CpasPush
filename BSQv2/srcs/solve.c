@@ -6,11 +6,11 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 19:09:36 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/25 20:00:15 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/25 21:01:47 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lib.h"
 
 ul		ver_x(ul i, ul x, ul len)
 {
@@ -32,7 +32,7 @@ void	disp(ul x, ul y, ul len, char *name)
 	ul		j;
 	int		fd;
 	char	c;
-	
+
 	j = 0;
 	if ((fd = open(e->name, O_RDONLY)) == -1)
 		return ;
