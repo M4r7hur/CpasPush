@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/25 19:04:22 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/25 19:18:23 by seciurte         ###   ########.fr       */
+/*   Created: 2020/08/25 19:18:43 by seciurte          #+#    #+#             */
+/*   Updated: 2020/08/25 19:19:39 by seciurte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
+#include <stdlib.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
-int		main(int ac, char **av)
-{
-	unsigned long	acs;
-	unsigned long	i;
-
-	acs = (unsigned long)ac;
-	i = -1
-	if (acs > 1)
-	{
-		while (++i < acs)
-		{
-			
-		}
-	}
-	else
-	{
-		
-	}
-}
+typedef	unsigned long ul;
