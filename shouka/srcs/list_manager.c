@@ -6,7 +6,7 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 10:19:27 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/24 17:48:43 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/25 11:10:35 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,26 @@ t_list	*list_last(t_list *begin_list)
 		tmp = tmp->next;
 	}
 	return (tmp);
+}
+
+void	put_next_line(t_list *begin_list)
+{
+	t_list	*tmp;
+	int		count;
+	int		x;
+
+	count = 0;
+	tmp = begin_list;
+	x = 0;
+	while (tmp->x == x)
+	{
+		count++;
+		tmp = tmp->next;
+	}
+	if (count > 0)
+	{
+		add_next_line(begin_list, tmp);
+		begin_list = tmp;
+	}
+	count = 0;
 }

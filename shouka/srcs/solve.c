@@ -6,11 +6,11 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 10:01:04 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/24 19:38:34 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/25 12:32:06 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
 int		ver_x(int i, int x, int len)
 {
@@ -31,24 +31,24 @@ void	disp(int x, int y, t_param *e, int len)
 	int		i;
 	int		j;
 	int		fd;
-	char	buff[1];
+	char	c;
 
-	i = 0;
+	i = -1;
 	j = 0;
 	if ((fd = open(e->name, O_RDONLY)) == -1)
 		return ;
-	while (read(fd, buff, 1) && buff[0] != '\n');
+	while (read(fd, &c, 1) && c != '\n');
 	i++;
-	while (read(fd, buff, 1))
+	while (read(fd, &c, 1))
 	{
-		if (buff[0] == e->obstacle)
+		if (c == e->obstacle)
 			ft_putchar(e->obstacle);
-		else if (buff[0] == e->vide && ver_x(i, x, len) && ver_y(j, y, len))
+		else if (c == e->vide && ver_x(i, x, len) && ver_y(j, y, len))
 			ft_putchar(e->plein);
-		else if (buff[0] == e->vide && !ver_x(i, x, len) && !ver_y(j, y, len))
+		else if (c == e->vide && (!ver_x(i, x, len) || !ver_y(j, y, len)))
 			ft_putchar(e->vide);
 		j++;
-		if (buff[0] == '\n' && (j = 0) == 0)
+		if (c == '\n' && (j = 0) == 0)
 		{
 			ft_putchar('\n');
 			i++;
@@ -67,10 +67,28 @@ int		check_obst(int x, int y, t_list *begin_list, int len)
 
 	xmax = x + len;
 	ymax = y + len;
-	while (begin_list)
+	ft_putchar('-');
+	ft_putchar(x + 48);
+	ft_putchar(' ');
+	ft_putchar(y + 48);
+	ft_putchar(' ');
+	ft_putchar(len + 48);	
+	ft_putchar(' ');
+	ft_putchar(xmax + 48);
+	ft_putchar(' ');
+	ft_putchar(ymax + 48);
+	ft_putchar('-');
+	ft_putchar('\n');
+	while (begin_list->x <= xmax && begin_list->y <= ymax && begin_list)
 	{
 		xtmp = begin_list->x;
 		ytmp = begin_list->y;
+		ft_putchar(' ');
+		ft_putchar(xtmp + 48);
+		ft_putchar(' ');
+		ft_putchar(ytmp + 48);
+		ft_putchar('-');
+		ft_putchar('\n');
 		if (xtmp >= x && xtmp <= xmax && ytmp >= y && y <= ymax)
 			return (0);
 		if (ytmp > y)
@@ -81,28 +99,48 @@ int		check_obst(int x, int y, t_list *begin_list, int len)
 	return (1);
 }
 
-void	solve(int xbord, int ybord, t_param *begin_list, int len)
+void	solve(int xbord, int ybord, t_param *params, int len)
 {
 	int x;
 	int y;
 	int xmax;
 	int ymax;
 
+	if (len < 0)
+		return ;
 	x = 0;
 	y = 0;
 	xmax = x + len;
 	ymax = y + len;
 	while (xmax <= xbord && ymax <= ybord)
 	{
-		if (check_obst(x, y, begin_list->next, len))
+		ft_putchar(x + 48);
+		ft_putchar(' ');
+		ft_putchar(y + 48);
+		ft_putchar(' ');
+		ft_putchar(len + 48);	
+		ft_putchar(' ');
+		ft_putchar(xmax + 48);
+		ft_putchar(' ');
+		ft_putchar(ymax + 48);
+		ft_putchar('\n');
+		if (check_obst(x, y, params->next, len))
 		{
-			disp(x, y, begin_list, len);
+			disp(x, y, params, len);
 			return ;
 		}
-		x++;
-		y++;
-		xmax++;
-		ymax++;
+		if (ymax == ybord)
+		{
+			x++;
+			y = 0;
+			xmax++;
+			ymax = y + len;
+		}
+		else
+		{
+			y++;
+			ymax++;
+		}
 	}
-	solve(xbord, ybord, begin_list, len - 1);
+	solve(xbord, ybord, params, len - 1);
 }

@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 09:46:07 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/24 18:24:07 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/25 11:10:24 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_param
 t_list		*create_elem(int x, int y);
 void		add_elem(t_list *elem1, t_list *elem2);
 void		add_next_line(t_list *elem1, t_list *elem2);
+void		put_next_line(t_list *begin_list);
 t_list		*list_last(t_list *begin_list);
 int			stock(char c, t_param *params, int *count, int i, int j);
 int			check_nb_col(int fd, int max, t_param *params);

@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 11:53:49 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/24 19:07:26 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/25 11:09:59 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int		main(int ac, char **av)
 				return (0);
 			if ((params = get_map_info(fd, av[i])) != NULL)
 			{
+				put_next_line(params->next);
 				solve(params->xmax, params->ymax, params, params->xmax);
 			}
 			i++;
