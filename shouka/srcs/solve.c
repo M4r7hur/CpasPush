@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 10:01:04 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/25 14:36:26 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/25 15:04:52 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int		ver_x(int i, int x, int len)
 {
-	if (i >= x && i <= x + len)
+	if (i >= x && i <= x + len - 1)
 		return (1);
 	return (0);
 }
 
 int		ver_y(int j, int y, int len)
 {
-	if (j >= y && j <= y + len)
+	if (j >= y && j <= y + len - 1)
 		return (1);
 	return (0);
 }
@@ -43,7 +43,7 @@ void	disp(int x, int y, t_param *e, int len)
 	{
 		if (c == e->obstacle)
 			ft_putchar(e->obstacle);
-		else if (c == e->vide && ver_x(i, x, len -1) && ver_y(j, y, len -1))
+		else if (c == e->vide && ver_x(i, x, len) && ver_y(j, y, len))
 			ft_putchar(e->plein);
 		else if (c == e->vide)
 			ft_putchar(e->vide);
@@ -53,25 +53,6 @@ void	disp(int x, int y, t_param *e, int len)
 			ft_putchar('\n');
 			i++;
 		}
-		ft_putchar(' ');
-		ft_putchar('-');
-		ft_putchar(c);
-		ft_putchar(' ');
-		ft_putchar(i + 48);
-		ft_putchar(' ');
-		ft_putchar(j + 48);	
-		ft_putchar(' ');
-		ft_putchar(len + 48);
-		ft_putchar(' ');
-		ft_putchar(x + 48);
-		ft_putchar(' ');
-		ft_putchar(y + 48);
-		ft_putchar(' ');
-		ft_putchar(x + len + 48);
-		ft_putchar(' ');
-		ft_putchar(y + len + 48);
-		ft_putchar('-');
-		ft_putchar('\n');
 	}
 	if (close(fd) == -1)
 		return ;
@@ -86,29 +67,11 @@ int		check_obst(int x, int y, t_list *begin_list, int len)
 
 	xmax = x + len - 1;
 	ymax = y + len - 1;
-	/*ft_putchar('-');
-	  ft_putchar(x + 48);
-	  ft_putchar(' ');
-	  ft_putchar(y + 48);
-	  ft_putchar(' ');
-	  ft_putchar(len + 48);	
-	  ft_putchar(' ');
-	  ft_putchar(xmax + 48);
-	  ft_putchar(' ');
-	  ft_putchar(ymax + 48);
-	  ft_putchar('-');
-	  ft_putchar('\n');*/
 	while (begin_list)
 	{
 		xtmp = begin_list->x;
 		ytmp = begin_list->y;
-		/*ft_putchar(' ');
-		  ft_putchar(xtmp + 48);
-		  ft_putchar(' ');
-		  ft_putchar(ytmp + 48);
-		  ft_putchar('-');
-		  ft_putchar('\n');*/
-		if (xtmp >= x && xtmp <= xmax && ytmp >= y && y <= ymax)
+		if (xtmp >= x && xtmp <= xmax && ytmp >= y && ytmp <= ymax)
 			return (0);
 		if (ytmp > y)
 			begin_list = begin_list->next;
@@ -131,24 +94,14 @@ void	solve(int xbord, int ybord, t_param *params, int len)
 	y = 0;
 	xmax = x + len - 1;
 	ymax = y + len - 1;
-	while (xmax <= xbord && ymax <= ybord)
+	while (xmax < xbord && ymax < ybord)
 	{
-		/*ft_putchar(x + 48);
-		  ft_putchar(' ');
-		  ft_putchar(y + 48);
-		  ft_putchar(' ');
-		  ft_putchar(len + 48);	
-		  ft_putchar(' ');
-		  ft_putchar(xmax + 48);
-		  ft_putchar(' ');
-		  ft_putchar(ymax + 48);
-		  ft_putchar('\n');*/
 		if (check_obst(x, y, params->next, len))
 		{
 			disp(x, y, params, len);
 			return ;
 		}
-		if (ymax == ybord)
+		if (ymax == ybord - 1)
 		{
 			x++;
 			y = 0;
