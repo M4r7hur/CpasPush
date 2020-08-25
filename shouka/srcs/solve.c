@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 10:01:04 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/25 12:32:06 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/25 14:36:26 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	disp(int x, int y, t_param *e, int len)
 	{
 		if (c == e->obstacle)
 			ft_putchar(e->obstacle);
-		else if (c == e->vide && ver_x(i, x, len) && ver_y(j, y, len))
+		else if (c == e->vide && ver_x(i, x, len -1) && ver_y(j, y, len -1))
 			ft_putchar(e->plein);
-		else if (c == e->vide && (!ver_x(i, x, len) || !ver_y(j, y, len)))
+		else if (c == e->vide)
 			ft_putchar(e->vide);
 		j++;
 		if (c == '\n' && (j = 0) == 0)
@@ -53,6 +53,25 @@ void	disp(int x, int y, t_param *e, int len)
 			ft_putchar('\n');
 			i++;
 		}
+		ft_putchar(' ');
+		ft_putchar('-');
+		ft_putchar(c);
+		ft_putchar(' ');
+		ft_putchar(i + 48);
+		ft_putchar(' ');
+		ft_putchar(j + 48);	
+		ft_putchar(' ');
+		ft_putchar(len + 48);
+		ft_putchar(' ');
+		ft_putchar(x + 48);
+		ft_putchar(' ');
+		ft_putchar(y + 48);
+		ft_putchar(' ');
+		ft_putchar(x + len + 48);
+		ft_putchar(' ');
+		ft_putchar(y + len + 48);
+		ft_putchar('-');
+		ft_putchar('\n');
 	}
 	if (close(fd) == -1)
 		return ;
@@ -65,34 +84,34 @@ int		check_obst(int x, int y, t_list *begin_list, int len)
 	int	xtmp;
 	int ytmp;
 
-	xmax = x + len;
-	ymax = y + len;
-	ft_putchar('-');
-	ft_putchar(x + 48);
-	ft_putchar(' ');
-	ft_putchar(y + 48);
-	ft_putchar(' ');
-	ft_putchar(len + 48);	
-	ft_putchar(' ');
-	ft_putchar(xmax + 48);
-	ft_putchar(' ');
-	ft_putchar(ymax + 48);
-	ft_putchar('-');
-	ft_putchar('\n');
-	while (begin_list->x <= xmax && begin_list->y <= ymax && begin_list)
+	xmax = x + len - 1;
+	ymax = y + len - 1;
+	/*ft_putchar('-');
+	  ft_putchar(x + 48);
+	  ft_putchar(' ');
+	  ft_putchar(y + 48);
+	  ft_putchar(' ');
+	  ft_putchar(len + 48);	
+	  ft_putchar(' ');
+	  ft_putchar(xmax + 48);
+	  ft_putchar(' ');
+	  ft_putchar(ymax + 48);
+	  ft_putchar('-');
+	  ft_putchar('\n');*/
+	while (begin_list)
 	{
 		xtmp = begin_list->x;
 		ytmp = begin_list->y;
-		ft_putchar(' ');
-		ft_putchar(xtmp + 48);
-		ft_putchar(' ');
-		ft_putchar(ytmp + 48);
-		ft_putchar('-');
-		ft_putchar('\n');
+		/*ft_putchar(' ');
+		  ft_putchar(xtmp + 48);
+		  ft_putchar(' ');
+		  ft_putchar(ytmp + 48);
+		  ft_putchar('-');
+		  ft_putchar('\n');*/
 		if (xtmp >= x && xtmp <= xmax && ytmp >= y && y <= ymax)
 			return (0);
 		if (ytmp > y)
-			begin_list = begin_list->next_line;
+			begin_list = begin_list->next;
 		else
 			begin_list = begin_list->next;
 	}
@@ -106,24 +125,24 @@ void	solve(int xbord, int ybord, t_param *params, int len)
 	int xmax;
 	int ymax;
 
-	if (len < 0)
+	if (len <= 0)
 		return ;
 	x = 0;
 	y = 0;
-	xmax = x + len;
-	ymax = y + len;
+	xmax = x + len - 1;
+	ymax = y + len - 1;
 	while (xmax <= xbord && ymax <= ybord)
 	{
-		ft_putchar(x + 48);
-		ft_putchar(' ');
-		ft_putchar(y + 48);
-		ft_putchar(' ');
-		ft_putchar(len + 48);	
-		ft_putchar(' ');
-		ft_putchar(xmax + 48);
-		ft_putchar(' ');
-		ft_putchar(ymax + 48);
-		ft_putchar('\n');
+		/*ft_putchar(x + 48);
+		  ft_putchar(' ');
+		  ft_putchar(y + 48);
+		  ft_putchar(' ');
+		  ft_putchar(len + 48);	
+		  ft_putchar(' ');
+		  ft_putchar(xmax + 48);
+		  ft_putchar(' ');
+		  ft_putchar(ymax + 48);
+		  ft_putchar('\n');*/
 		if (check_obst(x, y, params->next, len))
 		{
 			disp(x, y, params, len);
@@ -134,7 +153,7 @@ void	solve(int xbord, int ybord, t_param *params, int len)
 			x++;
 			y = 0;
 			xmax++;
-			ymax = y + len;
+			ymax = y + len - 1;
 		}
 		else
 		{
