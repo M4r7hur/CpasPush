@@ -6,7 +6,7 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 10:53:20 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/26 13:52:40 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/26 15:43:14 by seciurte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,28 @@ void	free_mall(t_minfo *minfo, ul i)
 	free(minfo->map);
 }
 
-void	get_line_file(char *name, t_minfo *minfo)
+void	reset_cursor(int fd, *name)
 {
-	ul		i;
-	int		fd;
-	char	buf;
-	char	*line
-	
-	i = 0;
-	if (!(fd = open(name, O_RDONLY)))
-		return (0);
-	while (read(fd, &buf, O_RDONLY) && buf != '\n')
-		i++;
 	if (!(close(fd)))
-		return (0);
-	if (!(line = malloc(sizeof(char))))
-		return (NULL);
+		return ;
 	if (!(fd = open(name, O_RDONLY)))
-		return (0);
-	read(fd, &line, i);
-	minfo->fill = line[i - 1];
-	minfo->obs = line[i - 2];
-	minfo->nobs = line[i - 3];
-	line[i - 3] = '\0';
-	minfo->nbl = matoi(line);
+		return ;
+}
+
+char	**get_str(t_minfo *minfo, int fd, *name)
+{
+	ul 	i;
+	char	buf;
+	char	*str;
+	char	line[500];
+
+	i = 0;
+	minfo->cursor = 0;
+	while (read(fd, &buf, 1))
+		minfo->cursor;
+	if (!(str = malloc(sizeof(char) * i)))
+		return (NULL);
+	reset_cursor(int fd, name);
+	while (read(fd, &buf, 1) && buf != '\n')
+		line[i] = 
 }
