@@ -6,7 +6,7 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 18:36:45 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/26 20:24:39 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/26 20:50:10 by seciurte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,18 @@ ul			len(char *str);
 ul			convert(ul **tab, ul i, ul j, t_minfo *info);
 ul			**change(t_minfo *info);
 void		solve(ul **tab, t_minfo *info, ul len);
+void		set_tmp(ul *xtmp, ul x, ul *ytmp, ul y);
+void		set_len(ul *lentmp, ul len);
 t_minfo		*get_minfo_file(char *name);
 ul			get_map_info(t_minfo *minfo, int fd, char *name);
 void		reset_cursor(int fd, char *name);
-char		*get_raw_map(int fd, char *name, t_minfo *minfo, ul cursor);
+char		*get_raw_map(int fd, char *name, ul cursor);
 int			check_charset(char c, char *charset);
 int			nb_mall(char *str, char *charset);
 int			len_str(char *str, char *charset, int nb);
 void		split(char **result, char *str, char *charset);
 char		**msplit(char *str, char *charset);
+void		disp(ul x, ul y, ul len, t_minfo *info);
+int			check_valid(ul **tab, ul x, ul y, ul len);
 
 #endif

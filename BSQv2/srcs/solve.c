@@ -6,13 +6,11 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 19:09:36 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/26 20:15:59 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/26 20:50:28 by seciurte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
-
-ul		g_maxlen = 0;
 
 ul		ver_x(ul i, ul x, ul len)
 {
@@ -77,33 +75,4 @@ int		check_valid(ul **tab, ul x, ul y, ul len)
 			return (0);
 	}
 	return (1);
-}
-
-void	solve(ul **tab, t_minfo *info, ul len)
-{
-	ul			x;
-	ul			y;
-	ul			xtmp;
-	ul			ytmp;
-	ul			lentmp;
-
-	x = 0;
-	y = 0;
-	lentmp = 0;
-	while ((x + len - 1) < info->nbl && (y + len - 1) < info->nbc)
-	{
-		if (check_valid(tab, x, y, len))
-		{
-			set_tmp(&xtmp, x, &ytmp, y);
-			set_len(&lentmp, len);
-			solve(tab, info, len + 1);
-			break ;
-		}
-		if ((y + len - 1) == (info->nbc) - 1 && (y = 0) == 0)
-			x++;
-		else
-			y++;
-	}
-	if (lentmp == g_maxlen)
-		disp(xtmp, ytmp, lentmp, info);
 }

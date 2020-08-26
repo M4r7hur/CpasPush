@@ -6,7 +6,7 @@
 #    By: seciurte <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/24 09:53:29 by seciurte          #+#    #+#              #
-#    Updated: 2020/08/26 20:29:24 by seciurte         ###   ########.fr        #
+#    Updated: 2020/08/26 20:53:29 by seciurte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ HEAD		=		${HEAD_DIR}lib.h
 
 OBJS		= ${SRCS:.c=.o}
 
-NAME		= bsq
+NAME		= BSQ
 
 CC			= gcc
 
@@ -38,7 +38,7 @@ CFLAGS		= -Wall -Wextra -Werror
 			${CC} ${CFLAGS} -I${HEAD_DIR} -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-			${CC} ${CFLAGS} -I${HEAD_DIR} -o ${NAME} ${OBJS}
+			${CC} ${CFLAGS} ${SRCS} -I${HEAD_DIR} -o ${NAME}
 
 all:		${NAME}
 

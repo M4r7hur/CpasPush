@@ -6,7 +6,7 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 19:16:21 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/26 20:28:54 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/26 20:36:09 by seciurte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 t_minfo		*get_minfo_file(char *name)
 {
 	int			fd;
-	t_minfo		minfo;
+	t_minfo		*minfo;
 	ul			cursor;
-	char		*map
+	char		*map;
 
-	if ((fd = open(name)) == -1)
+	if ((fd = open(name, O_RDONLY)) == -1)
 		return (NULL);
 	if (!(minfo = malloc(sizeof(t_minfo))))
 		return (NULL);
 	cursor = get_map_info(minfo, fd, name);
 	if (!(minfo->map = malloc(sizeof(char*) * minfo->nbl)))
 		return (NULL);
-	map = get_raw_map(fd, name, minfo, cursor);
+	map = get_raw_map(fd, name, cursor);
 	minfo->map = msplit(map, "\n");
 	return (minfo);
 }
@@ -36,12 +36,13 @@ ul		get_map_info(t_minfo *minfo, int fd, char *name)
 	char		fline[2048];
 	ul			i;
 
+	i = 0;
 	read(fd, &fline, 2048);
 	while (fline[i] != '\n')
 		i++;
 	minfo->fill = fline[i - 1];
 	minfo->obs = fline[i - 2];
-	minnfo->nobs = fline[i - 3];
+	minfo->nobs = fline[i - 3];
 	fline[i - 3] = '\0';
 	minfo->nbl = matoi(fline);
 	reset_cursor(fd, name);
@@ -56,7 +57,7 @@ void	reset_cursor(int fd, char *name)
 		return ;
 }
 
-char	*get_raw_map(int fd, char *name, t_minfo *minfo, ul cursor)
+char	*get_raw_map(int fd, char *name, ul cursor)
 {
 	ul		i;
 	char	buf;

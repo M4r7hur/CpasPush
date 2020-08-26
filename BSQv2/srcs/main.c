@@ -6,7 +6,7 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 19:04:22 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/26 18:56:46 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/26 20:53:04 by seciurte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,18 @@
 
 int		main(int ac, char **av)
 {
-	ul	acs;
-	ul	i;
-	int	fd;
+	int		i;
 	t_minfo *minfo;
+	ul		**tab;
 
-	acs = (ul)ac;
-	(void)av;
 	i = 0;
-	if (acs >1)
+	if (ac >1)
 	{
-		while (++i < (ul)ac)
+		while (++i < ac)
 		{
-			if (!(fd = open(av[i], O_RDONLY)))
-				return (1);
-			minfo = get_entry_from_file(fd, av[i]);
+			minfo = get_minfo_file(av[i]);
+			tab = change(minfo);
+			solve(tab, minfo, 1);
 		}
-	}
-	else
-	{
-		get_entry_from_stdin();
 	}
 }
