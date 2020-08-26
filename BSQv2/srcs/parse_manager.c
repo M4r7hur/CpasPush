@@ -6,19 +6,28 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 19:22:14 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/26 12:21:15 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/26 13:52:53 by seciurte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
 #include <stdio.h>
 
-t_minfo		*get_entry_from_file(char *name)
+t_minfo		*get_entry_from_file(char *name, ul i, ul j, ul tmp)
 {
 	int		fd;
 	t_minfo	*minfo;
+	char	buf;
 
-	
+	if (!(minfo = malloc(sizeof(t_minfo))))
+	   return (NULL);	
+	get_line_file(minfo);
+	while (i < minf->nbl)
+	{
+	while (read(fd, buff))
+		if (i == 0)
+			k = len()
+	}
 }
 
 t_minfo		*get_entry_from_stdin()
@@ -77,7 +86,7 @@ void	get_map(t_minfo	*minfo, char *buf)
 	}
 }
 
-void	get_line(t_minfo *minfo, ul i, ul size)
+void	get_line_stdin(t_minfo *minfo, ul i, ul size)
 {
 	ul	k;
 
