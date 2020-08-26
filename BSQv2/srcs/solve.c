@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 19:09:36 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/26 19:53:42 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/26 20:15:59 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,66 +53,30 @@ void	disp(ul x, ul y, ul len, t_minfo *info)
 	}
 }
 
-void	set_x_y_zero(ul *t1, ul *t2, ul *t3)
-{
-	*t1 = 0;
-	*t2 = 0;
-	*t3 = 0;
-}
-
-void	set_x_zero(ul *t1, ul *t3)
-{
-	*t1 = 0;
-	*t3 = 0;
-}
-
-void	set_y_zero(ul *t1, ul *t2)
-{
-	*t1 = 0;
-	*t2 = 0;
-}
-
 int		check_valid(ul **tab, ul x, ul y, ul len)
 {
-	ul t1;
-	ul t2;
-	ul t3;
-	ul t4;
-
 	if (x == 0 && y == 0)
-		set_x_y_zero(&t1, &t2, &t3);
+	{
+		if (tab[x + len - 1][y + len - 1] > 0)
+			return (0);
+	}
 	else if (x == 0 && y != 0)
 	{
-		set_x_zero(&t1, &t3);
-		t2 = tab[x + len - 1][y - 1];
+		if ((tab[x + len - 1][y + len - 1] - tab[x + len - 1][y - 1]) > 0)
+			return (0);
 	}
 	else if (x != 0 && y == 0)
 	{
-		set_y_zero(&t1, &t2);
-		t3 = tab[x - 1][y + len - 1];
+		if ((tab[x + len - 1][y + len - 1] - tab[x - 1][y + len - 1]) > 0)
+			return (0);
 	}
-	else
+	else if (x != 0 && y != 0)
 	{
-		t1 = tab[x - 1][y - 1];
-		t2 = tab[x + len - 1][y - 1];
-		t3 = tab[x - 1][y + len - 1];
+		if ((tab[x + len - 1][y + len - 1] - tab[x + len - 1][y - 1] -
+					tab[x - 1][y + len - 1] + tab[x - 1][y - 1]) > 0)
+			return (0);
 	}
-	t4 = tab[x + len - 1][y + len - 1];
-	if ((t4 - t2 - t3 + t1) > 0)
-		return (0);
 	return (1);
-}
-
-void	set_tmp(ul *xtmp, ul x, ul *ytmp, ul y)
-{
-	*xtmp = x;
-	*ytmp = y;
-}
-
-void	set_len(ul *lentmp, ul len)
-{
-	*lentmp = len;
-	g_maxlen = len;
 }
 
 void	solve(ul **tab, t_minfo *info, ul len)
