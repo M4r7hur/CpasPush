@@ -5,9 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/25 19:56:46 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/26 14:33:24 by armendes         ###   ########.fr       */
-/*   Updated: 2020/08/26 13:52:41 by seciurte         ###   ########.fr       */
+/*   Created: 2020/08/26 18:36:45 by seciurte          #+#    #+#             */
+/*   Updated: 2020/08/26 20:24:39 by seciurte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +32,20 @@ typedef struct			s_minfo
 	char	fill;
 }						t_minfo;
 
-t_minfo		*get_entry_from_stdin();
-t_minfo		*get_map_info(char *buf);
-void		get_map(t_minfo *minfo, char *buf);
-void		get_line(t_minfo *minfo, ul i, ul size);
-void		free_mall(t_minfo *minfo, ul i);
 void		ft_putchar(char c);
 ul			matoi(char *str);
 ul			len(char *str);
 ul			convert(ul **tab, ul i, ul j, t_minfo *info);
 ul			**change(t_minfo *info);
 void		solve(ul **tab, t_minfo *info, ul len);
+t_minfo		*get_minfo_file(char *name);
+ul			get_map_info(t_minfo *minfo, int fd, char *name);
+void		reset_cursor(int fd, char *name);
+char		*get_raw_map(int fd, char *name, t_minfo *minfo, ul cursor);
+int			check_charset(char c, char *charset);
+int			nb_mall(char *str, char *charset);
+int			len_str(char *str, char *charset, int nb);
+void		split(char **result, char *str, char *charset);
+char		**msplit(char *str, char *charset);
 
 #endif

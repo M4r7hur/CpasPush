@@ -6,7 +6,7 @@
 #    By: seciurte <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/24 09:53:29 by seciurte          #+#    #+#              #
-#    Updated: 2020/08/26 13:43:55 by armendes         ###   ########.fr        #
+#    Updated: 2020/08/26 20:29:24 by seciurte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,12 @@ SRC_DIR		=		./srcs/
 HEAD_DIR	=		./includes/
 
 SRCS		=		${SRC_DIR}change.c\
-					${SRC_DIR}mainArthur.c\
 					${SRC_DIR}solve.c\
-					${SRC_DIR}utils.c
+					${SRC_DIR}solve2.c\
+					${SRC_DIR}utils.c\
+					${SRC_DIR}parse_manager.c\
+					${SRC_DIR}split.c\
+					${SRC_DIR}main.c
 
 HEAD		=		${HEAD_DIR}lib.h
 
@@ -29,7 +32,7 @@ CC			= gcc
 
 RM			= rm -f
 
-CFLAGS		= -Wall -Wextra -Werror -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror
 
 .c.o:
 			${CC} ${CFLAGS} -I${HEAD_DIR} -c $< -o ${<:.c=.o}
