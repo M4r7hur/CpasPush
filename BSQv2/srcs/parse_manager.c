@@ -6,27 +6,32 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 19:22:14 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/26 11:04:51 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/26 12:21:15 by seciurte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
+#include <stdio.h>
 
-t_minfo		*get_entry_from_file(int fd, char *name)
+t_minfo		*get_entry_from_file(char *name)
 {
+	int		fd;
+	t_minfo	*minfo;
+
+	
 }
 
 t_minfo		*get_entry_from_stdin()
 {
 	char	buf[16384];
 	t_minfo	*minfo;
-	ul		i;
 
 	read(0, &buf, 16384);
 	minfo = get_map_info(buf);
-	if (!(minfo->map = malloc(sizeof(char*) * nbl)))
+	if (!(minfo->map = malloc(sizeof(char*) * minfo->nbl)))
 		return (NULL);
-	get_map(minfo);
+	get_map(minfo, buf);
+	return (minfo);
 }
 
 t_minfo		*get_map_info(char	*buf)
@@ -42,13 +47,13 @@ t_minfo		*get_map_info(char	*buf)
 	minfo->fill = buf[i - 1];
 	minfo->obs = buf[i - 2];
 	minfo->nobs = buf[i - 3];
-	line[i - 3] = '\0';
-	minfo->nbl = ft_atoi(buf);
+	buf[i - 3] = '\0';
+	minfo->nbl = matoi(buf);
 	minfo->cursor = i;
 	return (minfo);
 }
 
-void	get_map(t_minfo	minfo, char buf)
+void	get_map(t_minfo	*minfo, char *buf)
 {
 	ul		i;
 	ul		j;
@@ -60,21 +65,25 @@ void	get_map(t_minfo	minfo, char buf)
 		j = len(buf);
 		if (i == minfo->nbl)
 			tmp = j;
+		printf("i = %ld | j = %ld | tmp = %ld\n", i, j, tmp);
 		if (j != tmp)
 		{
 			write(2, "map error\n", 10);
-			return (NULL)
+			free_mall(minfo, i);
+			return ;
 		}
+		get_line(minfo, i, j);
+		i++;
 	}
 }
 
-void	get_line(t_minfo minfo, ul i, ul size)
+void	get_line(t_minfo *minfo, ul i, ul size)
 {
 	ul	k;
-	
+
 	k = 0;
 	if (!(minfo->map[i] = malloc(sizeof(char) * size)))
-		return (NULL);
+		return ;
 	while (k < size)
 	{
 		minfo->map[i][k] = minfo->cursor;

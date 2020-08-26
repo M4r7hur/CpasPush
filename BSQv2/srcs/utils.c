@@ -6,13 +6,13 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 20:30:56 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/26 10:55:58 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/26 11:27:48 by seciurte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
 
-ul		ft_atoi(char *str)
+ul		matoi(char *str)
 {
 	ul i;
 	ul nbr;
