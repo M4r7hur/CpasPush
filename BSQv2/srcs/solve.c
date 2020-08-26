@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 19:09:36 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/25 21:01:47 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/26 13:53:04 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,38 +26,31 @@ ul		ver_y(ul j, ul y, ul len)
 	return (0);
 }
 
-void	disp(ul x, ul y, ul len, char *name)
+void	disp(ul x, ul y, ul len, t_minfo *info)
 {
 	ul		i;
 	ul		j;
-	int		fd;
-	char	c;
 
-	j = 0;
-	if ((fd = open(e->name, O_RDONLY)) == -1)
-		return ;
-	while (read(fd, &c, 1) && c != '\n')
-		i = 0;
-	while (read(fd, &c, 1))
+	i = 0;
+	while (i < info->nbl)
 	{
-		if (c == e->obstacle)
-			ft_putchar(e->obstacle);
-		else if (c == e->vide && ver_x(i, x, len) && ver_y(j, y, len))
-			ft_putchar(e->plein);
-		else if (c == e->vide)
-			ft_putchar(e->vide);
-		j++;
-		if (c == '\n' && (j = 0) == 0)
+		j = 0;
+		while (j < info->nbc)
 		{
-			ft_putchar('\n');
-			i++;
+			if (info->map[i][j] == info->obs)
+				ft_putchar(info->obs);
+			else if (info->map[i][j] == info->nobs && ver_x(i, x, len) && ver_y(j, y, len))
+				ft_putchar(info->fill);
+			else if (info->map[i][j] == info->nobs)
+				ft_putchar(info->nobs);
+			j++;
 		}
+		ft_putchar('\n');
+		i++;
 	}
-	if (close(fd) == -1)
-		return ;
 }
 
-void	check_valid(ul **tab, ul x, ul y, ul len)
+int		check_valid(ul **tab, ul x, ul y, ul len)
 {
 	ul t1;
 	ul t2;
@@ -73,7 +66,7 @@ void	check_valid(ul **tab, ul x, ul y, ul len)
 	return (1);
 }
 
-void	solve(ul **tab, ul xbord, ul ybord, ul len)
+void	solve(ul **tab, t_minfo *info, ul len)
 {
 	ul x;
 	ul y;
@@ -81,17 +74,19 @@ void	solve(ul **tab, ul xbord, ul ybord, ul len)
 	ul ytmp;
 	ul lentmp;
 
+	x = 0;
+	y = 0;
 	lentmp = 0;
-	while ((x + len - 1) <= xbord && (y + len - 1) <= ybord)
+	while ((x + len - 1) <= info->nbl && (y + len - 1) <= info->nbc)
 	{
 		if (check_valid(tab, x, y, len))
 		{
 			xtmp = x;
 			ytmp = y;
 			lentmp = len;
-			solve(tab, xbord, ybord, len + 1);
+			solve(tab, info, len + 1);
 		}
-		if ((y + len) == (ybord - 1))
+		if ((y + len) == ((info->nbc) - 1))
 		{
 			x++;
 			y = 0;
@@ -99,5 +94,5 @@ void	solve(ul **tab, ul xbord, ul ybord, ul len)
 		y++;
 	}
 	if (lentmp != 0)
-		return ;
+		disp(x, y, len, info);
 }

@@ -6,7 +6,7 @@
 #    By: seciurte <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/24 09:53:29 by seciurte          #+#    #+#              #
-#    Updated: 2020/08/26 11:35:09 by seciurte         ###   ########.fr        #
+#    Updated: 2020/08/26 13:43:55 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,12 @@ SRC_DIR		=		./srcs/
 
 HEAD_DIR	=		./includes/
 
-SRCS		= 		${SRC_DIR}parse_manager.c\
-					${SRC_DIR}parse_manager2.c\
-					${SRC_DIR}main.c\
-					${SRC_DIR}utils.c\
+SRCS		=		${SRC_DIR}change.c\
+					${SRC_DIR}mainArthur.c\
+					${SRC_DIR}solve.c\
+					${SRC_DIR}utils.c
 
-HEAD		=		${HEAD_DIR}libft.h
+HEAD		=		${HEAD_DIR}lib.h
 
 OBJS		= ${SRCS:.c=.o}
 

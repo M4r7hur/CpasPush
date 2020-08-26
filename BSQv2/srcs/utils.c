@@ -6,11 +6,16 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 20:30:56 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/26 11:27:48 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/26 13:43:21 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
 
 ul		matoi(char *str)
 {
