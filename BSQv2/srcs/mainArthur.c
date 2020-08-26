@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 13:34:06 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/26 13:53:06 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/26 14:33:20 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int main(void)
 
 	if (!(info = malloc(sizeof(t_minfo))))
 		return (1);
-	char *arr[] = {"............", ".......x....", "............", "....x...x...", "......x.....", "............"};
+	char *arr[] = {"o....", ".....", ".o..o", ".....", "....o"};
 	info->map = arr;
-	info->obs = 'x';
+	info->obs = 'o';
 	info->nobs = '.';
-	info->nbl = 6;
-	info->nbc = 12;
-	info->fill = 'o';
+	info->nbl = 5;
+	info->nbc = 5;
+	info->fill = 'x';
 	info->cursor = 0;
 	ul **tab = change(info);
 	solve(tab, info, 1);

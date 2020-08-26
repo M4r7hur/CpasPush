@@ -6,11 +6,13 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 19:09:36 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/26 13:53:04 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/26 14:33:22 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
+
+#include <stdio.h>
 
 ul		ver_x(ul i, ul x, ul len)
 {
@@ -61,7 +63,8 @@ int		check_valid(ul **tab, ul x, ul y, ul len)
 	t2 = tab[x + len - 1][y];
 	t3 = tab[x][y + len - 1];
 	t4 = tab[x + len - 1][y + len - 1];
-	if ((t4 - t2 - t3 - t1) > 0)
+	//printf("t1= %lu | t2= %lu | t3= %lu | t4= %lu\n", t1, t2, t3, t4);
+	if ((t4 - t2 - t3 + t1) > 0)
 		return (0);
 	return (1);
 }
@@ -73,26 +76,37 @@ void	solve(ul **tab, t_minfo *info, ul len)
 	ul xtmp;
 	ul ytmp;
 	ul lentmp;
+	static ul maxlen;
 
 	x = 0;
 	y = 0;
+	xtmp = 0;
+	ytmp = 0;
 	lentmp = 0;
-	while ((x + len - 1) <= info->nbl && (y + len - 1) <= info->nbc)
+	while ((x + len - 1) < info->nbl && (y + len - 1) < info->nbc)
 	{
+		//printf("x= %lu | y= %lu | len= %lu | info->nbl= %lu | info->nbc= %lu | maxlen= %lu | lentmp= %lu\n", x, y, len, info->nbl, info->nbc, maxlen, lentmp);
 		if (check_valid(tab, x, y, len))
 		{
+			//printf("v\n");
 			xtmp = x;
 			ytmp = y;
 			lentmp = len;
+			maxlen = lentmp;
 			solve(tab, info, len + 1);
+			break ;
 		}
-		if ((y + len) == ((info->nbc) - 1))
+		if ((y + len - 1) == (info->nbc) - 1)
 		{
 			x++;
 			y = 0;
 		}
-		y++;
+		else
+			y++;
 	}
-	if (lentmp != 0)
-		disp(x, y, len, info);
+	if (lentmp == maxlen)
+	{
+		//printf("d");
+		disp(xtmp, ytmp, lentmp, info);
+	}
 }
