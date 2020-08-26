@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 19:09:36 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/26 14:33:22 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/26 17:57:37 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 ul		ver_x(ul i, ul x, ul len)
 {
-	if (i >= x && i <= x + len - 1)
+	if (i >= x && i < x + len)
 		return (1);
 	return (0);
 }
 
 ul		ver_y(ul j, ul y, ul len)
 {
-	if (j >= y && j <= y + len - 1)
+	if (j >= y && j < y + len)
 		return (1);
 	return (0);
 }
@@ -59,11 +59,21 @@ int		check_valid(ul **tab, ul x, ul y, ul len)
 	ul t3;
 	ul t4;
 
-	t1 = tab[x][y];
-	t2 = tab[x + len - 1][y];
-	t3 = tab[x][y + len - 1];
-	t4 = tab[x + len - 1][y + len - 1];
-	//printf("t1= %lu | t2= %lu | t3= %lu | t4= %lu\n", t1, t2, t3, t4);
+	if (x == 0 || y == 0)
+	{
+		t1 = 0;
+		t2 = 0;
+		t3 = 0;
+		t4 = tab[x + len - 1][y + len - 1];
+	}
+	else
+	{
+		t1 = tab[x - 1][y - 1];
+		t2 = tab[x + len - 1][y - 1];
+		t3 = tab[x - 1][y + len - 1];
+		t4 = tab[x + len - 1][y + len - 1];
+	}
+	printf("t1= %lu | t2= %lu | t3= %lu | t4= %lu | result= %lu\n", t1, t2, t3, t4, (t4 - t2 - t3 + t1));
 	if ((t4 - t2 - t3 + t1) > 0)
 		return (0);
 	return (1);
@@ -85,7 +95,7 @@ void	solve(ul **tab, t_minfo *info, ul len)
 	lentmp = 0;
 	while ((x + len - 1) < info->nbl && (y + len - 1) < info->nbc)
 	{
-		//printf("x= %lu | y= %lu | len= %lu | info->nbl= %lu | info->nbc= %lu | maxlen= %lu | lentmp= %lu\n", x, y, len, info->nbl, info->nbc, maxlen, lentmp);
+		printf("x= %lu | y= %lu | len= %lu | info->nbl= %lu | info->nbc= %lu | maxlen= %lu | lentmp= %lu\n", x, y, len, info->nbl, info->nbc, maxlen, lentmp);
 		if (check_valid(tab, x, y, len))
 		{
 			//printf("v\n");
