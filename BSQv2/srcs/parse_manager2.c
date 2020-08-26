@@ -6,7 +6,7 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 10:53:20 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/26 15:43:14 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/26 17:57:07 by seciurte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,12 @@ char	**get_str(t_minfo *minfo, int fd, *name)
 		return (NULL);
 	reset_cursor(int fd, name);
 	while (read(fd, &buf, 1) && buf != '\n')
-		line[i] = 
+		line[i] = buf;
+	line[i] = '\0';
+	set_minfo(minfo, line);
+}
+
+void	set_minfo(t_minfo minfo, char *str)
+{
+	
 }
