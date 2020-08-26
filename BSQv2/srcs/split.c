@@ -6,9 +6,11 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 15:23:03 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/26 15:23:19 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/26 18:44:44 by seciurte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "lib.h"
 
 int		check_charset(char c, char *charset)
 {
@@ -89,7 +91,7 @@ void	split(char **result, char *str, char *charset)
 	}
 }
 
-char	**ft_split(char *str, char *charset)
+char	**msplit(char *str, char *charset)
 {
 	char	**result;
 

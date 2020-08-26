@@ -6,7 +6,7 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 19:22:14 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/26 15:36:45 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/26 18:58:36 by seciurte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 
 t_minfo		*get_entry_from_file(int fd, char *name)
 {
-	int		fd;
 	t_minfo	*minfo;
-	char	**str;
+	char	*str;
 
 	if (!(minfo = malloc(sizeof(t_minfo))))
 	   return (NULL);	
-	str = get_str();
+	str = get_str(minfo, fd, name);
+	minfo->map = msplit(str, "\n");
+	return (minfo);
 }
 
 t_minfo		*get_entry_from_stdin()
@@ -75,7 +76,7 @@ void	get_map(t_minfo	*minfo, char *buf)
 			free_mall(minfo, i);
 			return ;
 		}
-		get_line(minfo, i, j);
+		get_line_stdin(minfo, i, j);
 		i++;
 	}
 }
