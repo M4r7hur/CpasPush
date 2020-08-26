@@ -6,7 +6,7 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 10:53:20 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/26 12:21:08 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/26 13:52:40 by seciurte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,28 @@ void	free_mall(t_minfo *minfo, ul i)
 	free(minfo->map);
 }
 
-ul		get_line_size(char *name)
+void	get_line_file(char *name, t_minfo *minfo)
 {
 	ul		i;
 	int		fd;
 	char	buf;
+	char	*line
 	
 	i = 0;
 	if (!(fd = open(name, O_RDONLY)))
 		return (0);
-	while (read(fd, &buf, O_RDONLY))
+	while (read(fd, &buf, O_RDONLY) && buf != '\n')
 		i++;
-	
+	if (!(close(fd)))
+		return (0);
+	if (!(line = malloc(sizeof(char))))
+		return (NULL);
+	if (!(fd = open(name, O_RDONLY)))
+		return (0);
+	read(fd, &line, i);
+	minfo->fill = line[i - 1];
+	minfo->obs = line[i - 2];
+	minfo->nobs = line[i - 3];
+	line[i - 3] = '\0';
+	minfo->nbl = matoi(line);
 }
