@@ -6,7 +6,7 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 20:30:56 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/26 13:43:21 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/27 10:32:37 by seciurte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,48 @@ ul		len(char *str)
 	ul	i;
 
 	i = 0;
-	while (str[i] != '\n')
+	while (str[i])
 		i++;
 	return (i);
+}
+
+ul		check_maperr(char **str, t_minfo *minfo)
+{
+	ul		i;
+	ul		j;
+	ul		tmp;
+	ul		nbnobs;
+
+	i = -1;
+	tmp = len(str[0]);
+	nbnobs = 0;
+	while (++i < minfo->nbl)
+	{
+		j = -1;
+		while (str[i][++j])
+		{
+			if (!(str[i][j] == minfo->obs || str[i][j] == minfo->nobs))
+				return (1);
+			if (str[i][j] == minfo->nobs)
+				nbnobs++;
+			}
+		if (j != tmp)
+			return (1);
+	}
+	if (nbnobs == 0)
+		return (1);
+	return (0);
+}
+
+void		free_malloc(t_minfo *minfo)
+{
+	ul		i;
+	
+	i = 0;
+	while (i < minfo->nbl)
+	{
+		free(minfo->map[i]);
+		i++;
+	}
+	free(minfo->map);
 }

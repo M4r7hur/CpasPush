@@ -6,7 +6,7 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 15:23:03 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/26 20:17:32 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/27 09:50:38 by seciurte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,9 @@ int		check_charset(char c, char *charset)
 
 int		nb_mall(char *str, char *charset)
 {
-	int j;
 	int result;
 	int	is_true;
 
-	j = 0;
 	result = 0;
 	is_true = 0;
 	while (*str)
