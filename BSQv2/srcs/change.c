@@ -6,7 +6,7 @@
 /*   By: armendes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 20:09:15 by armendes          #+#    #+#             */
-/*   Updated: 2020/08/26 13:34:21 by armendes         ###   ########.fr       */
+/*   Updated: 2020/08/27 11:16:24 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,17 @@ ul	**change(t_minfo *info)
 		i++;
 	}
 	return (tab);
+}
+
+void	free_tab(ul **tab, t_minfo *minfo)
+{
+	ul i;
+
+	i = 0;
+	while (i < minfo->nbl)
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }

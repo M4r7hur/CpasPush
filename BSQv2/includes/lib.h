@@ -6,7 +6,7 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 18:36:45 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/27 10:32:02 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/27 11:21:33 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ void					disp(ul x, ul y, ul len, t_minfo *info);
 int						check_valid(ul **tab, ul x, ul y, ul len);
 ul						check_maperr(char **str, t_minfo *minfo);
 void					free_malloc(t_minfo *minfo);
+void					free_tab(ul **tab, t_minfo *minfo);
 
 #endif

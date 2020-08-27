@@ -6,7 +6,7 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 19:04:22 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/27 10:38:24 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/27 11:21:36 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int		main(int ac, char **av)
 			{
 				tab = change(minfo);
 				solve(tab, minfo, 1);
+				free_tab(tab, minfo);
+				free_malloc(minfo);
 			}
 		}
 	}
@@ -34,4 +36,5 @@ int		main(int ac, char **av)
 	{
 		i = 1;
 	}
+	while (1);
 }

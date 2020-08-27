@@ -6,7 +6,7 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 19:16:21 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/27 10:32:33 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/27 11:21:38 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ t_minfo		*get_minfo_file(char *name)
 	if (!(minfo = malloc(sizeof(t_minfo))))
 		return (NULL);
 	cursor = get_map_info(minfo, fd, name);
-	if (!(minfo->map = malloc(sizeof(char*) * minfo->nbl)))
-		return (NULL);
 	map = get_raw_map(fd, name);
 	minfo->map = msplit(map, "\n");
+	free(map);
 	minfo->nbc = len(minfo->map[0]);
 	if (check_maperr(minfo->map, minfo))
 	{
 		write(2, "map error\n", 10);
 		free_malloc(minfo);
+		free(minfo);
 		return (NULL);
 	}
 	return (minfo);

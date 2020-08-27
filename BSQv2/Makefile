@@ -6,7 +6,7 @@
 #    By: seciurte <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/24 09:53:29 by seciurte          #+#    #+#              #
-#    Updated: 2020/08/26 21:15:18 by seciurte         ###   ########.fr        #
+#    Updated: 2020/08/27 11:00:43 by armendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ CC			= gcc
 
 RM			= rm -f
 
-CFLAGS		= -Wall -Wextra -Werror -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror
 
 .c.o:
 			${CC} ${CFLAGS} -I${HEAD_DIR} -c $< -o ${<:.c=.o}

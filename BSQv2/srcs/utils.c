@@ -6,7 +6,7 @@
 /*   By: seciurte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 20:30:56 by seciurte          #+#    #+#             */
-/*   Updated: 2020/08/27 10:32:37 by seciurte         ###   ########.fr       */
+/*   Updated: 2020/08/27 11:09:52 by armendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void		free_malloc(t_minfo *minfo)
 	ul		i;
 	
 	i = 0;
-	while (i < minfo->nbl)
+	while (i <= minfo->nbl)
 	{
 		free(minfo->map[i]);
 		i++;
